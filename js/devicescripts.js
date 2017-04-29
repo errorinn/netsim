@@ -3,7 +3,7 @@ var deviceScripts = {
 		onPacketReceived: function(device, packet) {
 			for (var i = 0; i < device.rules.length; i++) {
 				if (device.rules[i].dstip == packet.network.dstip) {
-					sendPacket(device.id, device.ports[device.rules[i].portNum], packet);
+					sendPacket(device.id, device.rules[i].portNum, packet);
 				}
 			}
 		}
@@ -29,7 +29,7 @@ var deviceScripts = {
                         };
                         console.log(new_packet);
                         console.log(packet);
-                        sendPacket(device.id, device.ports[0], new_packet);
+                        sendPacket(device.id, 0, new_packet);
                     }
 		}
     },
