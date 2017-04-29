@@ -2,8 +2,10 @@ blocking
 - remove CSS lines from beginning of each level
 - update sprites & layouts in level files
 - update ui-specific mentions in level descrips
+- convert triggers in level files to arrays
 - fix borders on playback button sprites
-- finish edit packet functionality
+- finish edit packet functionality (only saves dstip/srcip right now)
+- only processes single triggers right now
 - prettier level listing
 - resize game on resize viewport (attempt at this at top of ui.js but it's laggy)
 - 'repeat' packet property
