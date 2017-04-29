@@ -3,23 +3,24 @@
 		{
 			id:"Alice",
 			ports:1,
-			x:0.25,
-			y:0.55,
+			x:0.2,
+			y:0.6,
 			player:true
 		},
 		{
 			id:"Google",
+			image:"server",
 			ports:1,
-			x:0.75,
-			y:0.5,
+			x:0.8,
+			y:0.4,
                         script: deviceScripts.ping
 		},
 		{
 			id:"Home",
-			type:"Modem",
+			image:"router",
 			ports:2,
 			x:0.4,
-			y:0.5,
+			y:0.4,
                         script: deviceScripts.modem
 		}
 	],
