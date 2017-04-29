@@ -24,12 +24,12 @@
 		}
 	],
 	timeline:[],
-	triggers:{
-		t0:{
+	triggers:[
+		{
 			type:"packet",
 			device:"Google",
 			times:50
 		}
-	},
+	],
 	nextLevel:"03 DoS/dos02.json"
 }

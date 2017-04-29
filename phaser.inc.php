@@ -146,16 +146,24 @@ function update() {
 
 function donePacket() {
 	this.kill();
+	var youWin = true;
+
 	for (var i = 0; i < level.triggers.length; i++) {
 		if (satisfiesTrigger(this, level.triggers[i])) {
-			$.get("./solns.ajax.php?level="+levelid+"&method=win");
-			$("#winner").dialog({
-				title:"You win!",
-				resizable:false,
-				modal:true,
-				buttons:[{text:"Go to the next level", click:function(){ location.href="./?level="+level.nextLevel; }}]
-			});
+			level.triggers[i].completed = true;
 		}
+
+		if (!level.triggers[i].hasOwnProperty("completed")) youWin = false;
+	}
+
+	if (youWin) {
+		$.get("./solns.ajax.php?level="+levelid+"&method=win");
+		$("#winner").dialog({
+			title:"You win!",
+			resizable:false,
+			modal:true,
+			buttons:[{text:"Go to the next level", click:function(){ location.href="./?level="+level.nextLevel; }}]
+		});
 	}
 
 	if (devices[this.dst].hasOwnProperty("script")) {
