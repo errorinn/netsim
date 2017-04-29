@@ -5,6 +5,18 @@ var level = <?php include 'levels/'.$leveldata['filename'].'.json'; ?>;
 var devices = {};
 var playerPackets = [];
 
+var packetFields = [
+	{layer:"network", fields:[
+		"srcip", "dstip"
+	]},
+	{layer:"transport", fields:[
+		"proto", "ttl"
+	]},
+	{layer:"application", fields:[
+		"payload"
+	]}
+];
+
 var vpWidth = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
 var vpHeight = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
 
@@ -144,6 +156,19 @@ function donePacket() {
 function satisfiesTrigger(pkt, t) {
 	if (pkt.dst != t.device) return false;
 	if (!t.hasOwnProperty("payload")) return true;
-	return pkt.payload.network.dstip == t.payload.network.dstip && pkt.payload.network.srcip == t.payload.network.srcip;
+	if (!pkt.hasOwnProperty("payload")) return false;
+
+	var layers = Object.keys(t.payload);
+	for (var i = 0; i < layers.length; i++) {
+		if (!pkt.payload.hasOwnProperty(layers[i])) return false;
+
+		var fields = Object.keys(t.payload[ layers[i] ]);
+		for (var j = 0; j < fields.length; j++) {
+			if (!pkt.payload[ layers[i] ].hasOwnProperty(fields[j])) return false;
+			if (pkt.payload[ layers[i] ][ fields[j] ] != t.payload[ layers[i] ][ fields[j] ]) return false;
+		}
+	}
+
+	return true;
 }
 
