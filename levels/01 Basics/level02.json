@@ -50,10 +50,7 @@
 	triggers:[
 		{
 			type:"packet",
-			device:"Bob",
-			payload:{
-				network:{dstip:"Bob"}
-			}
+			device:"Bob"
 		}
 	],
 	nextLevel:3
