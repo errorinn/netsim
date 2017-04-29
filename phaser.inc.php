@@ -33,6 +33,7 @@ function preload() {
 	game.load.image('monitor', 'includes/monitor.png');
 	game.load.image('packet', 'includes/circle.png');
 	game.load.image('server', 'includes/server.png');
+	game.load.image('router', 'includes/router.png');
 
 	game.load.image('reset', 'includes/ui/reset.png');
 	game.load.image('pause', 'includes/ui/pause.png');

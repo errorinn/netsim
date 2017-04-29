@@ -2,28 +2,28 @@
 	devices:[
 		{
 			id:"Alice",
-			type:"NullComputer",
+                        image: "iphone-1",
 			ports:1,
 			x:0.5,
-			y:0.25,
+			y:0.2,
 			player:true
 		},
 		{
 			id:"Bob",
-			type:"NullComputer",
 			ports:1,
 			x:0.25,
 			y:0.75
 		},
 		{
 			id:"Carol",
-			type:"NullComputer",
+                        image: "macbook",
 			ports:1,
 			x:0.75,
 			y:0.75
 		},
 		{
 			id:"Router 1",
+                        image: "router",
 			ports:3,
 			x:0.5,
 			y:0.4,
@@ -36,6 +36,7 @@
 		},
 		{
 			id:"Router 2",
+                        image: "router",
 			ports:3,
 			x:0.35,
 			y:0.6,
@@ -48,6 +49,7 @@
 		},
 		{
 			id:"Router 3",
+                        image: "router",
 			ports:3,
 			x:0.65,
 			y:0.6,
@@ -135,5 +137,5 @@
 			}
 		}
 	],
-	nextLevel:"02 Spoofs/spoofs02.json"
+	nextLevel:7
 }
