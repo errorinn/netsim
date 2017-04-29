@@ -21,7 +21,7 @@ var deviceScripts = {
                         var new_packet = {
                             from: packet.network.dstip,
 		            payload:{
-                                srcip: packet.network.dstip
+                                srcip: packet.network.dstip,
                                 dstip: packet.network.srcip
                             }
                         };
