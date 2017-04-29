@@ -17,17 +17,19 @@ var deviceScripts = {
 
     ping: {
 		onPacketReceived: function(device, packet) {
-                    if(packet.transport.proto == "ICMP"){
-                        var new_packet = {
-                            network: {
-                                srcip: packet.network.dstip,
-                                dstip: packet.network.srcip
-                            },
-                            transport: {
-                                proto: "ICMP"
-                            }
-                        };
-                        sendPacket(device.id, 0, new_packet);
+                    if(packet.hashOwnProperty("proto"){
+                        if(packet.transport.proto == "ICMP"){
+                            var new_packet = {
+                                network: {
+                                    srcip: packet.network.dstip,
+                                    dstip: packet.network.srcip
+                                },
+                                transport: {
+                                    proto: "ICMP"
+                                }
+                            };
+                            sendPacket(device.id, 0, new_packet);
+                        }
                     }
 		}
     },
