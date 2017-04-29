@@ -36,7 +36,7 @@
 	timeline:[
 		{
 			type:"packet",
-			at:50,
+			at:500,
 			from:"Alice",
 			payload:{
 				network:{srcip: "Alice", dstip:"Google"}
@@ -44,22 +44,24 @@
 		},
 		{
 			type:"packet",
-			at:80,
+			at:1000,
 			from:"Google",
 			payload:{
 				network:{srcip: "Google", dstip:"Home"}
 			}
 		}
 	],
-	triggers:{
-		t0:{
+	triggers:[
+            {
+		
 			type:"packet",
-			device:"Google",
+			device:"Alice",
 			payload:{
-				network:{srcip:"Home", dstip:"Google"},
+				network:{srcip:"Google", dstip:"Home"},
 				transport:{proto:"ICMP"}
 			}
-		}
-	},
-	nextLevel:"02 Spoofs/spoofs01.json"
+            }
+	    
+        ]
+	nextLevel:6
 }
