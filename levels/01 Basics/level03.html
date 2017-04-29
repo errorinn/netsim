@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="../../includes/css/base.css" />
+<link rel="stylesheet" href="../../includes/css/style.css" />
+
+<h1>Basics Level 3</h1>
+
+<p>So far we have seen very basic packets. These packets have shown only the source (who sent the packet) and the
+destination (who received the packet). In this level, we will see a more complex packet that will give the recipient
+information about how to respond.
+
+<p>Pause the simulation to view the packet sent from Alice's computer to Google. There is a new header under the
+<strong>transport layer</strong>. The header, <strong>proto</strong> defines the <strong>protocol</strong> that will
+be run on this layer. The protocol listed is <strong>ICMP</strong>, which refers to a <strong>ping</strong>. When a
+computer receives a packet with an ICMP echo request (ping) they respond by sending back a packet with an ICMP echo
+(pong). Resume the simulation and notice the packet sent from Google to Alice's computer.
+
+<p>To complete this level, you must send 4 more ICMP echo requests (pings) from Alice to Google. Proceed as before,
+by adding a new packet in the Timeline Editor. Remember to add the new <strong>transport layer</strong> header.
+
+<p><em><strong>Hint:</strong> use the 'repeat' feature in the Editor to send the same packet many times!
+
+<h3>Level Objectives</h3>
+
+<ul>
+	<li>remember to go to the <strong>next level</strong> in the timeline editor</li>
+	<li>send 4 more ping requests to Google</li>
+</ul>

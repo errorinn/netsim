@@ -1,0 +1,98 @@
+{
+	devices:[
+		{
+			id:"Example Alice",
+			type:"SimpleEncryptionComputer",
+			ports:1,
+			x:0.25,
+			y:0.35
+		},
+		{
+			id:"Example Bob",
+			type:"SimpleEncryptionComputer",
+			ports:1,
+			x:0.75,
+			y:0.35
+		},
+		{
+			id:"Alice",
+			type:"SimpleEncryptionComputer",
+			ports:1,
+			x:0.25,
+			y:0.6
+		},
+		{
+			id:"Eve",
+			type:"Switch",
+			ports:2,
+			x:0.5,
+			y:0.6,
+			player:true,
+			defaultBehaviour:false,
+			preload:true
+		},
+		{
+			id:"Bob",
+			type:"SimpleEncryptionComputer",
+			ports:1,
+			x:0.75,
+			y:0.6
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Eve", dstport:0
+		},
+		{
+			src:"Eve", srcport:1,
+			dst:"Bob", dstport:0
+		},
+		{
+			src:"Example Alice", srcport:0,
+			dst:"Example Bob", dstport:0
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:50,
+			from:"Alice",
+			payload:{
+				network:{srcip:"Alice",dstip:"Bob"},
+				transport:{proto:"encryptedmessage"},
+				application:{type:"keyrequest"}
+			}
+		},
+		{
+			type:"packet",
+			at:50,
+			from:"Example Alice",
+			payload:{
+				network:{srcip:"Example Alice",dstip:"Example Bob"},
+				transport:{proto:"encryptedmessage"},
+				application:{type:"keyrequest"}
+			}
+		}
+	],
+	triggers:{
+		t0:{
+			type:"packet",
+			device:"Eve",
+			payload:{
+				network:{srcip:"Alice",dstip:"Bob"},
+				transport:{proto:"encryptedmessage"},
+				application:{type:"message",encryptionkey:"31337"}
+			}
+		},
+		t1:{
+			type:"packet",
+			device:"Bob",
+			payload:{
+				network:{srcip:"Alice"},
+				transport:{proto:"encryptedmessage"},
+				application:{type:"message",encryptionkey:"123456"}
+			}
+		}
+	}
+}

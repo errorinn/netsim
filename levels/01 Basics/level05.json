@@ -1,0 +1,65 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.55,
+			player:true
+		},
+		{
+			id:"Google",
+			type:"NullComputer",
+			ports:1,
+			x:0.75,
+			y:0.5
+		},
+		{
+			id:"Home",
+			type:"Modem",
+			ports:2,
+			x:0.4,
+			y:0.5
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Home", dstport:0
+		},
+		{
+			src:"Home", srcport:1,
+			dst:"Google", dstport:0
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:50,
+			from:"Alice",
+			payload:{
+				network:{dstip:"Google"}
+			}
+		},
+		{
+			type:"packet",
+			at:80,
+			from:"Google",
+			payload:{
+				network:{dstip:"Home"}
+			}
+		}
+	],
+	triggers:{
+		t0:{
+			type:"packet",
+			device:"Google",
+			payload:{
+				network:{srcip:"Home", dstip:"Google"},
+				transport:{proto:"ICMP"}
+			}
+		}
+	},
+	nextLevel:"02 Spoofs/spoofs01.json"
+}

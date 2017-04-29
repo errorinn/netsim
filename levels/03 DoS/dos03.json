@@ -1,0 +1,86 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.3,
+			player:true
+		},
+		{
+			id:"Barbara",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.4
+		},
+		{
+			id:"Carol",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.5
+		},
+		{
+			id:"Darcy",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.6
+		},
+		{
+			id:"Eve",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.7,
+			bufferWait:170
+		},
+		{
+			id:"Router",
+			type:"BroadcastRouter",
+			ports:5,
+			x:0.5,
+			y:0.5,
+			rules:[
+				{dstip:"Alice",portNum:0},
+				{dstip:"Barbara",portNum:1},
+				{dstip:"Carol",portNum:2},
+				{dstip:"Darcy",portNum:3},
+				{dstip:"Eve",portNum:4}
+			]
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Router", dstport:0
+		},
+		{
+			src:"Barbara", srcport:0,
+			dst:"Router", dstport:1
+		},
+		{
+			src:"Carol", srcport:0,
+			dst:"Router", dstport:2
+		},
+		{
+			src:"Darcy", srcport:0,
+			dst:"Router", dstport:3
+		},
+		{
+			src:"Eve", srcport:0,
+			dst:"Router", dstport:4
+		}
+	],
+	timeline:[],
+	triggers:{
+		t0:{
+			type:"packet",
+			device:"Eve",
+			times:45
+		}
+	},
+	nextLevel:"04 Attacks/attacks01.json"
+}

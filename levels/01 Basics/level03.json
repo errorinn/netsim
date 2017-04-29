@@ -1,0 +1,48 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.5,
+			player:true,
+			bufferWait:10000000
+		},
+		{
+			id:"Google",
+			type:"NullComputer",
+			ports:1,
+			x:0.75,
+			y:0.5
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Google", dstport:0
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:100,
+			from:"Alice",
+			payload:{
+				network:{dstip:"Google"},
+				transport:{proto:"ICMP"}
+			}
+		}
+	],
+	triggers:{
+		t0:{
+			type:"packet",
+			device:"Alice",
+			payload:{
+				network:{srcip:"Google", dstip:"Alice"}
+			},
+			times:5
+		}
+	},
+	nextLevel:"01 Basics/level04.json"
+}

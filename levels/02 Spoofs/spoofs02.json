@@ -1,0 +1,112 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.25,
+			player: "true"
+		},
+		{
+			id:"Bob",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.5
+		},
+		{
+			id:"Charlie",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.75
+		},
+		{
+			id:"Central Hub",
+			type:"Switch",
+			ports:4,
+			x:0.5,
+			y:0.5
+		},
+		{
+			id:"Google",
+			type:"NullComputer",
+			ports:1,
+			x:0.75,
+			y:0.5
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Central Hub", dstport:0
+		},
+		{
+			src:"Bob", srcport:0,
+			dst:"Central Hub", dstport:1
+		},
+		{
+			src:"Charlie", srcport:0,
+			dst:"Central Hub", dstport:2
+		},
+		{
+			src:"Google", srcport:0,
+			dst:"Central Hub", dstport:3
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:100,
+			from:"Google",
+			payload:{
+				network:{srcip:"Google",dstip:"Bob"}
+			}
+		},
+		{
+			type:"packet",
+			at:150,
+			from:"Google",
+			payload:{
+				network:{srcip:"Google",dstip:"Bob"}
+			}
+		},
+		{
+			type:"packet",
+			at:200,
+			from:"Google",
+			payload:{
+				network:{srcip:"Google",dstip:"Bob"}
+			}
+		},
+		{
+			type:"packet",
+			at:380,
+			from:"Charlie",
+			payload:{
+				network:{srcip:"Charlie",dstip:"Google"},
+				transport:{proto:"ICMP"}
+			}
+		},
+		{
+			type:"packet",
+			at:700,
+			from:"Charlie",
+			payload:{
+				network:{srcip:"Charlie",dstip:"Google"},
+				transport:{proto:"ICMP"}
+			}
+		}
+	],
+	triggers:{
+		t0:{
+			type:"packet",
+			device:"Alice",
+			payload:{
+				network:{dstip:"Charlie"}
+			}
+		}
+	},
+	nextLevel: "03 DoS/dos01.json"
+}

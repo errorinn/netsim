@@ -1,0 +1,75 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			ports:1,
+			x:0.33,
+			y:0.33,
+		},
+		{
+			id:"Bob",
+			image:"iphone-1",
+			ports:1,
+			x:0.67,
+			y:0.33
+		},
+		{
+			id:"Carol",
+			image:"macbook",
+			ports:1,
+			x:0.33,
+			y:0.67,
+			player:"true"
+		},
+		{
+			id:"Doug",
+			image:"monitor",
+			ports:1,
+			x:0.67,
+			y:0.67
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Bob", dstport:0
+		},
+		{
+			src:"Carol", srcport:0,
+			dst:"Doug", srcport:0
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:50,
+			from:"Bob",
+			payload:{
+				network:{srcip:"Bob",dstip:"Alice"}
+			}
+		},
+		{
+			type:"packet",
+			at:1050,
+			from:"Alice",
+			payload:{
+				network:{srcip:"Alice",dstip:"Bob"}
+			}
+		},
+		{
+			type:"packet",
+			at:2050,
+			from:"Bob",
+			payload:{
+				network:{srcip:"Bob",dstip:"Alice"}
+			}
+		}
+	],
+	triggers:[
+		{
+			type:"packet",
+			device:"Doug"
+		}
+	],
+	nextLevel:2
+}

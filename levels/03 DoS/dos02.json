@@ -1,0 +1,116 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.2,
+			player:true
+		},
+		{
+			id:"Zombie 1",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.4,
+			player:true
+		},
+		{
+			id:"Zombie 2",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.6,
+			player:true
+		},
+		{
+			id:"Zombie 3",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.8,
+			player:true
+		},
+		{
+			id:"Google",
+			type:"NullComputer",
+			ports:1,
+			x:0.9,
+			y:0.5,
+			bufferWait:305
+		},
+		{
+			id:"Google's Firewall",
+			type:"Firewall",
+			ports:5,
+			x:0.7,
+			y:0.5,
+			rules:[
+				{srcip:"Alice"}
+			]
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Google's Firewall", dstport:4
+		},
+		{
+			src:"Zombie 1", srcport:0,
+			dst:"Google's Firewall", dstport:1
+		},
+		{
+			src:"Zombie 2", srcport:0,
+			dst:"Google's Firewall", dstport:2
+		},
+		{
+			src:"Zombie 3", srcport:0,
+			dst:"Google's Firewall", dstport:3
+		},
+		{
+			src:"Google", srcport:0,
+			dst:"Google's Firewall", dstport:0
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:50,
+			from:"Alice",
+			times:20,
+			payload:{
+				network:{srcip:"Alice",dstip:"Google"}
+			}
+		}
+	],
+	triggers:{
+		t0:{
+			type:"packet",
+			device:"Google",
+			payload:{
+				network:{srcip:"Zombie 1", dstip:"Google"}
+			}
+		},
+		t1:{
+			type:"packet",
+			device:"Google",
+			payload:{
+				network:{srcip:"Zombie 2", dstip:"Google"}
+			}
+		},
+		t2:{
+			type:"packet",
+			device:"Google",
+			payload:{
+				network:{srcip:"Zombie 3", dstip:"Google"}
+			}
+		},
+		t3:{
+			type:"packet",
+			device:"Google",
+			times:60
+		}
+	},
+	nextLevel:"03 DoS/dos03.json"
+}

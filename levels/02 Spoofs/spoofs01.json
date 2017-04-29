@@ -1,0 +1,139 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			type:"NullComputer",
+			ports:1,
+			x:0.5,
+			y:0.25,
+			player:true
+		},
+		{
+			id:"Bob",
+			type:"NullComputer",
+			ports:1,
+			x:0.25,
+			y:0.75
+		},
+		{
+			id:"Carol",
+			type:"NullComputer",
+			ports:1,
+			x:0.75,
+			y:0.75
+		},
+		{
+			id:"Router 1",
+			type:"ManualRouter",
+			ports:3,
+			x:0.5,
+			y:0.4,
+			rules:[
+				{dstip:"Alice", portNum:0},
+				{dstip:"Bob", portNum:1},
+				{dstip:"Carol", portNum:2}
+			]
+		},
+		{
+			id:"Router 2",
+			type:"ManualRouter",
+			ports:3,
+			x:0.35,
+			y:0.6,
+			rules:[
+				{dstip:"Bob", portNum:0},
+				{dstip:"Alice", portNum:1},
+				{dstip:"Carol", portNum:2}
+			]
+		},
+		{
+			id:"Router 3",
+			type:"ManualRouter",
+			ports:3,
+			x:0.65,
+			y:0.6,
+			rules:[
+				{dstip:"Carol", portNum:0},
+				{dstip:"Alice", portNum:1},
+				{dstip:"Bob", portNum:2}
+			]
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Router 1", dstport:0
+		},
+		{
+			src:"Bob", srcport:0,
+			dst:"Router 2", dstport:0
+		},
+		{
+			src:"Carol", srcport:0,
+			dst:"Router 3", dstport:0
+		},
+		{
+			src:"Router 1", srcport:1,
+			dst:"Router 2", dstport:1
+		},
+		{
+			src:"Router 1", srcport:2,
+			dst:"Router 3", dstport:1
+		},
+		{
+			src:"Router 2", srcport:2,
+			dst:"Router 3", dstport:2
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:50,
+			from:"Alice",
+			payload:{
+				network:{dstip:"Bob"}
+			}
+		},
+		{
+			type:"packet",
+			at:150,
+			from:"Bob",
+			payload:{
+				network:{dstip:"Alice"}
+			}
+		},
+		{
+			type:"packet",
+			at:210,
+			from:"Alice",
+			payload:{
+				network:{dstip:"Carol"}
+			}
+		},
+		{
+			type:"packet",
+			at:270,
+			from:"Bob",
+			payload:{
+				network:{dstip:"Carol"}
+			}
+		}
+	],
+	triggers:{
+		t0:{
+			type:"packet",
+			device:"Bob",
+			payload:{
+				network:{srcip:"Carol", dstip:"Bob"}
+			}
+		},
+		t1:{
+			type:"packet",
+			device:"Router 1",
+			payload:{
+				network:{srcip:"Carol", dstip:"Bob"}
+			}
+		}
+	},
+	nextLevel:"02 Spoofs/spoofs02.json"
+}
