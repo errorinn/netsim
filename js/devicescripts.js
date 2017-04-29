@@ -19,10 +19,12 @@ var deviceScripts = {
 		onPacketReceived: function(device, packet) {
                     if(packet.transport.proto == "ICMP"){
                         var new_packet = {
-                            from: packet.network.dstip,
-		            payload:{
+                            network: {
                                 srcip: packet.network.dstip,
                                 dstip: packet.network.srcip
+                            },
+                            transport: {
+                                proto: "ICMP"
                             }
                         };
                         doPacketAnimation(device.id, device.ports[0], new_packet);
