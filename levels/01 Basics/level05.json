@@ -56,7 +56,7 @@
 			type:"packet",
 			device:"Alice",
 			payload:{
-				network:{srcip:"Google", dstip:"Home"},
+				network:{srcip:"Google", dstip:"Alice"},
 				transport:{proto:"ICMP"}
 			}
             }
