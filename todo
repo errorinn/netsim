@@ -3,6 +3,8 @@ blocking
 - update sprites & layouts in level files
 - update ui-specific mentions in level descrips
 - convert triggers in level files to arrays
+- update nextLevel in each file
+- update "you win" dialog to handle no nextLevel property
 - fix borders on playback button sprites
 - finish edit packet functionality (only saves dstip/srcip right now)
 - only processes single triggers right now
@@ -41,4 +43,3 @@ level ideas
 - privacy (see ISPs, who can read data, etc)
 - how protocols work (HTTP, DNS, email, DHCP...)
 
-test
