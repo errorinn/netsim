@@ -131,6 +131,15 @@ function getDefaultRecipient(from) {
 	return null;
 }
 
+function getPortRecipient(from, portNum) {
+	for (var i = 0; i < level.links.length; i++) {
+		if (level.links[i].src == from && level.links[i].srcport == portNum) return level.links[i].dst;
+		if (level.links[i].dst == from && level.links[i].dstport == portNum) return level.links[i].src;
+	}
+	return null;
+
+}
+
 function update() {
 }
 

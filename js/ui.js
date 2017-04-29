@@ -10,6 +10,10 @@ $(document).ready(function(){
 	$('[type="button"]').button();
 });
 
+function sendPacket(src, portnum, payload) {
+	doPacketAnimation(src, getPortRecipient(src, portnum), payload);
+}
+
 function doPacketAnimation(src, dst, payload) {
 	var pkt = grpPackets.create(devices[src].sprite.centerX - 16, devices[src].sprite.centerY - 16, 'packet');
 	pkt.inputEnabled = true;
