@@ -27,8 +27,6 @@ var deviceScripts = {
                                 proto: "ICMP"
                             }
                         };
-                        console.log(new_packet);
-                        console.log(packet);
                         sendPacket(device.id, 0, new_packet);
                     }
 		}
