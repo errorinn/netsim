@@ -19,8 +19,8 @@ var deviceScripts = {
 		onPacketReceived: function(device, packet) {
                     if(packet.transport.proto == "ICMP"){
                         var new_packet = packet;
-                        new_packet.network.srcip = packet.dstip;
-                        new_packet.network.dstip = packet.srcip;
+                        new_packet.network.srcip = packet.network.dstip;
+                        new_packet.network.dstip = packet.network.srcip;
                         doPacketAnimation(device.id, device.ports[0], new_packet);
                     }
 		}
