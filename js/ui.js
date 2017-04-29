@@ -44,15 +44,15 @@ function createPacketEditor(index, packet) {
 			str += "<option"+(packet.from == level.devices[i].id ? " selected" : "")+">"+level.devices[i].id+"</option>";
 		}
 	}
-	str += "</select><br><fieldset><legend>Network Layer</legend>";
-	str += "srcip: <input type=\"text\" id=\"srcip\" value=\""+payloadStr(packet,"network","srcip")+"\"><br>";
-	str += "dstip: <input type=\"text\" id=\"dstip\" value=\""+payloadStr(packet,"network","dstip")+"\">";
-	str += `</fieldset>
-	<fieldset>
-	<legend>Transport Layer</legend>
-		payload: <input type=\"text\" id=\"payload\"></input><br>
-		proto: <input type=\"text\" id=\"other\"></input>
-	</fieldset>`;
+	str += "</select><br>";
+
+	for (var i = 0; i < packetFields.length; i++) {
+		str += "<fieldset><legend>"+packetFields[i].layer+"</legend>";
+		for (var j = 0; j < packetFields[i].fields.length; j++) {
+			str += packetFields[i].fields[j]+":<br><input type=\"text\" id=\""+packetFields[i].layer+"_"+packetFields[i].fields[j]+"\" value=\""+payloadStr(packet, packetFields[i].layer, packetFields[i].fields[j])+"\"><br>";
+		}
+		str += "</fieldset>";
+	}
 
 	$("#editor").html(str);
 	$('#editor').dialog({
@@ -67,13 +67,18 @@ function createPacketEditor(index, packet) {
 function updatePlayerPacket(index) {
 	playerPackets[index] = {
 		from: $("#pktFrom").val(),
-		payload:{
-			network:{
-				srcip: $("#srcip").val(),
-				dstip: $("#dstip").val()
+		payload:{}
+	};
+
+	for (var i = 0; i < packetFields.length; i++) {
+		playerPackets[index].payload[packetFields[i].layer] = {};
+		for (var j = 0; j < packetFields[i].fields.length; j++) {
+			var val = $("#"+packetFields[i].layer+"_"+packetFields[i].fields[j]).val();
+			if (val != "") {
+				playerPackets[index].payload[packetFields[i].layer][ packetFields[i].fields[j] ] = val;
 			}
 		}
-	};
+	}
 
 	savePlayerPackets();
 }
