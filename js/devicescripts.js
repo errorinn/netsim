@@ -33,6 +33,24 @@ var deviceScripts = {
     },
     modem: {
         onPacketReceived: function(device, packet) {
+            if(packet.network.dstip == device.id){//look up ip in NAT table
+                var new_packet = {
+                    network: {
+                        srcip: packet.network.srcip,
+                        dstip: getPortRecipient(device.id, 0)
+                    }
+                };
+                sendPacket(device.id, 0, new_packet);
+            } else { //replace src ip with device IP and save in NAT table
+                var new_packet = {
+                    network: {
+                        srcip: device.id,
+                        dstip: packet.network.dstip
+                    }
+                };
+                sendPacket(device.id, 1, new_packet);
+            }
+
         }
     }
 
