@@ -38,9 +38,13 @@ var deviceScripts = {
             if(packet.network.dstip == device.id){//look up ip in NAT table
                 var new_packet = {};
                 for (var i = 0; i < packetFields.length; i++) {
-                    new_packet[packetFields[i].layer] = {};
-                    for (var j = 0; j < packetFields[i].fields.length; j++) {
-                        new_packet[packetFields[i].layer][ packetFields[i].fields[j] ] = packet[packetFields[i].layer][ packetFields[i].fields[j] ];
+                    if(packet.hasOwnProperty(packetFields[i].layer)){
+                        new_packet[packetFields[i].layer] = {};
+                        for (var j = 0; j < packetFields[i].fields.length; j++) {
+                            if(packet.hasOwnProperty(packetFields[i].fields[j])){
+                                new_packet[packetFields[i].layer][ packetFields[i].fields[j] ] = packet[packetFields[i].layer][ packetFields[i].fields[j] ];
+                            }
+                        }
                     }
                 }
                 new_packet.network.dstip = getPortRecipient(device.id, 0);
@@ -48,9 +52,13 @@ var deviceScripts = {
             } else { //replace src ip with device IP and save in NAT table
                 var new_packet = {};
                 for (var i = 0; i < packetFields.length; i++) {
-                    new_packet[packetFields[i].layer] = {};
-                    for (var j = 0; j < packetFields[i].fields.length; j++) {
-                        new_packet[packetFields[i].layer][ packetFields[i].fields[j] ] = packet[packetFields[i].layer][ packetFields[i].fields[j] ];
+                    if(packet.hasOwnProperty(packetFields[i].layer)){
+                        new_packet[packetFields[i].layer] = {};
+                        for (var j = 0; j < packetFields[i].fields.length; j++) {
+                            if(packet.hasOwnProperty(packetFields[i].fields[j])){
+                                new_packet[packetFields[i].layer][ packetFields[i].fields[j] ] = packet[packetFields[i].layer][ packetFields[i].fields[j] ];
+                            }
+                        }
                     }
                 }
                 new_packet.network.srcip = device.id;
