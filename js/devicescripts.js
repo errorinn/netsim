@@ -43,7 +43,6 @@ var deviceScripts = {
                         for (var j = 0; j < packetFields[i].fields.length; j++) {
                             if(packet[packetFields[i].layer].hasOwnProperty(packetFields[i].fields[j])){
                                 new_packet[packetFields[i].layer][ packetFields[i].fields[j] ] = packet[packetFields[i].layer][ packetFields[i].fields[j] ];
-                                console.log(new_packet[packetFields[i].layer]);
                             }
                         }
                     }
@@ -52,7 +51,6 @@ var deviceScripts = {
                 sendPacket(device.id, 0, new_packet);
             } else { //replace src ip with device IP and save in NAT table
                 var new_packet = {};
-                console.log(packet);
                 for (var i = 0; i < packetFields.length; i++) {
                     if(packet.hasOwnProperty(packetFields[i].layer)){
                         new_packet[packetFields[i].layer] = {};
