@@ -17,7 +17,7 @@ var deviceScripts = {
 
     ping: {
 		onPacketReceived: function(device, packet) {
-                    if(packet.hasOwnProperty("proto")){
+                    if(packet.hasOwnProperty("transport") && packet["transport"].hasOwnProperty("proto")){
                         if(packet.transport.proto == "ICMP"){
                             var new_packet = {
                                 network: {
