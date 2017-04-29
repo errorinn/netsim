@@ -18,9 +18,13 @@ var deviceScripts = {
     ping: {
 		onPacketReceived: function(device, packet) {
                     if(packet.transport.proto == "ICMP"){
-                        var new_packet = packet;
-                        new_packet.network.srcip = packet.network.dstip;
-                        new_packet.network.dstip = packet.network.srcip;
+                        var new_packet = {
+                            from: packet.network.dstip,
+		            payload:{
+                                srcip: packet.network.dstip
+                                dstip: packet.network.srcip
+                            }
+                        };
                         doPacketAnimation(device.id, device.ports[0], new_packet);
                     }
 		}
