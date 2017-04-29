@@ -27,6 +27,8 @@ var deviceScripts = {
     },
     modem: {
         onPacketReceived: function(device, packet) {
+        }
+    }
 
 
         
