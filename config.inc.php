@@ -1,23 +1,5 @@
 <?php
 
-$game = array(
-array('name' => '01 Basics', 'levels' => array(
-	'level01', 'level02', 'level03', 'level04', 'level05'
-)),
-array('name' => '02 Spoofs', 'levels' => array(
-	'spoofs01', 'spoofs02'
-)),
-array('name' => '03 DoS', 'levels' => array(
-	'dos01', 'dos02', 'dos03'
-)),
-array('name' => '04 Attacks', 'levels' => array(
-	'attacks01'
-)),
-array('name' => 'login', 'levels' => array(
-	'login'
-))
-);
-
 $db = new SQLite3('db/netsim.sqlite3');
 
 session_set_cookie_params(3600 * 24 * 30);
