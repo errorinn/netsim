@@ -18,9 +18,16 @@ var deviceScripts = {
     ping: {
 		onPacketReceived: function(device, packet) {
                     //if(packet.tranport.proto == "icmp"){
-                        //doPacketAnimation(device.id, device.ports[0], 
+                        var new_packet = packet;
+                        new_packet.srcip = packet.dstip;
+                        new_packet.dstip = packet.srcip;
+                        doPacketAnimation(device.id, device.ports[0], new_packet);
+                    //}
 		}
-    }
+    },
+    modem: {
+        onPacketReceived: function(device, packet) {
+
 
         
 }

@@ -20,7 +20,9 @@
 			type:"Modem",
 			ports:2,
 			x:0.4,
-			y:0.5
+			y:0.5,
+                        script: deviceScripts.modem,
+                        rules: []
 		}
 	],
 	links:[
