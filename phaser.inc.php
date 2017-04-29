@@ -143,11 +143,14 @@ function getPortRecipient(from, portNum) {
 function update() {
 }
 
+var levelOver = false;
 function donePacket() {
 	this.kill();
 	var youWin = true;
 
 	for (var i = 0; i < level.triggers.length; i++) {
+		if (level.triggers[i].hasOwnProperty("times")) level.triggers[i].times--;
+
 		if (satisfiesTrigger(this, level.triggers[i])) {
 			level.triggers[i].completed = true;
 		}
@@ -155,7 +158,8 @@ function donePacket() {
 		if (!level.triggers[i].hasOwnProperty("completed")) youWin = false;
 	}
 
-	if (youWin) {
+	if (!levelOver && youWin) {
+		levelOver = true;
 		$.get("./solns.ajax.php?level="+levelid+"&method=win");
 		$("#winner").dialog({
 			title:"You win!",
@@ -172,10 +176,10 @@ function donePacket() {
 
 function satisfiesTrigger(pkt, t) {
 	if (pkt.dst != t.device) return false;
-	if (!t.hasOwnProperty("payload")) return true;
+	if (!t.hasOwnProperty("payload") && !t.hasOwnProperty("times")) return true;
 	if (!pkt.hasOwnProperty("payload")) return false;
 
-	var layers = Object.keys(t.payload);
+	var layers = t.hasOwnProperty("payload") ? Object.keys(t.payload) : [];
 	for (var i = 0; i < layers.length; i++) {
 		if (!pkt.payload.hasOwnProperty(layers[i])) return false;
 
@@ -185,6 +189,8 @@ function satisfiesTrigger(pkt, t) {
 			if (pkt.payload[ layers[i] ][ fields[j] ] != t.payload[ layers[i] ][ fields[j] ]) return false;
 		}
 	}
+
+	if (t.hasOwnProperty("times") && t.times > 0) return false;
 
 	return true;
 }
