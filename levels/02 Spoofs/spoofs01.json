@@ -39,7 +39,7 @@
                         image: "router",
 			ports:3,
 			x:0.35,
-			y:0.5,
+			y:0.6,
 			script:deviceScripts.manualRouter,
 			rules:[
 				{dstip:"Bob", portNum:0},
@@ -52,7 +52,7 @@
                         image: "router",
 			ports:3,
 			x:0.65,
-			y:0.5,
+			y:0.6,
 			script: deviceScripts.manualRouter,
 			rules:[
 				{dstip:"Carol", portNum:0},
