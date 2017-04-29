@@ -5,9 +5,7 @@ blocking
 - convert triggers in level files to arrays
 - update nextLevel in each file
 - update "you win" dialog to handle no nextLevel property
-- fix borders on playback button sprites
-- finish edit packet functionality (only saves dstip/srcip right now)
-- only processes single triggers right now
+- process timing triggers
 - prettier level listing
 - resize game on resize viewport (attempt at this at top of ui.js but it's laggy)
 - 'repeat' packet property

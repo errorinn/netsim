@@ -24,10 +24,10 @@
 		},
 		{
 			id:"Router 1",
-			type:"ManualRouter",
 			ports:3,
 			x:0.5,
 			y:0.4,
+			script:deviceScripts.manualRouter,
 			rules:[
 				{dstip:"Alice", portNum:0},
 				{dstip:"Bob", portNum:1},
@@ -36,10 +36,10 @@
 		},
 		{
 			id:"Router 2",
-			type:"ManualRouter",
 			ports:3,
 			x:0.35,
 			y:0.6,
+			script:deviceScripts.manualRouter,
 			rules:[
 				{dstip:"Bob", portNum:0},
 				{dstip:"Alice", portNum:1},
@@ -48,10 +48,10 @@
 		},
 		{
 			id:"Router 3",
-			type:"ManualRouter",
 			ports:3,
 			x:0.65,
 			y:0.6,
+			script: deviceScripts.manualRouter,
 			rules:[
 				{dstip:"Carol", portNum:0},
 				{dstip:"Alice", portNum:1},
@@ -119,21 +119,21 @@
 			}
 		}
 	],
-	triggers:{
-		t0:{
+	triggers:[
+		{
 			type:"packet",
 			device:"Bob",
 			payload:{
 				network:{srcip:"Carol", dstip:"Bob"}
 			}
 		},
-		t1:{
+		{
 			type:"packet",
 			device:"Router 1",
 			payload:{
 				network:{srcip:"Carol", dstip:"Bob"}
 			}
 		}
-	},
+	],
 	nextLevel:"02 Spoofs/spoofs02.json"
 }
