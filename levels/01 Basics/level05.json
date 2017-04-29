@@ -2,7 +2,6 @@
 	devices:[
 		{
 			id:"Alice",
-			type:"NullComputer",
 			ports:1,
 			x:0.25,
 			y:0.55,
@@ -10,10 +9,10 @@
 		},
 		{
 			id:"Google",
-			type:"NullComputer",
 			ports:1,
 			x:0.75,
-			y:0.5
+			y:0.5,
+                        script: deviceScripts.ping
 		},
 		{
 			id:"Home",
@@ -21,8 +20,7 @@
 			ports:2,
 			x:0.4,
 			y:0.5,
-                        script: deviceScripts.modem,
-                        rules: []
+                        script: deviceScripts.modem
 		}
 	],
 	links:[
