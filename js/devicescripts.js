@@ -13,6 +13,15 @@ var deviceScripts = {
 		onPacketReceived: function (device, packet) {
 			//.
 		}
-	}
+	},
+
+    ping: {
+		onPacketReceived: function(device, packet) {
+                    //if(packet.tranport.proto == "icmp"){
+                        //doPacketAnimation(device.id, device.ports[0], 
+		}
+    }
+
+        
 }
 

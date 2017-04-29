@@ -2,7 +2,6 @@
 	devices:[
 		{
 			id:"Alice",
-			type:"NullComputer",
 			ports:1,
 			x:0.25,
 			y:0.5,
@@ -11,10 +10,11 @@
 		},
 		{
 			id:"Google",
-			type:"NullComputer",
 			ports:1,
 			x:0.75,
-			y:0.5
+			y:0.5,
+			image:"iphone-1",
+			script: deviceScripts.ping
 		}
 	],
 	links:[
@@ -26,23 +26,22 @@
 	timeline:[
 		{
 			type:"packet",
-			at:100,
+			at:500,
 			from:"Alice",
 			payload:{
-				network:{dstip:"Google"},
+				network:{srcip:"Alice", dstip:"Google"},
 				transport:{proto:"ICMP"}
 			}
 		}
 	],
-	triggers:{
-		t0:{
+	triggers:[
+                {
 			type:"packet",
 			device:"Alice",
 			payload:{
 				network:{srcip:"Google", dstip:"Alice"}
-			},
-			times:5
-		}
-	},
-	nextLevel:"01 Basics/level04.json"
+			}
+                }
+        ],
+	nextLevel:4
 }
