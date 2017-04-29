@@ -17,12 +17,13 @@ var deviceScripts = {
 
     ping: {
 		onPacketReceived: function(device, packet) {
-                    //if(packet.tranport.proto == "icmp"){
+                    if(packet.transport.proto == "ICMP"){
                         var new_packet = packet;
                         new_packet.srcip = packet.dstip;
                         new_packet.dstip = packet.srcip;
+                        console.log(new_packet);
                         doPacketAnimation(device.id, device.ports[0], new_packet);
-                    //}
+                    }
 		}
     },
     modem: {
