@@ -43,7 +43,7 @@ var deviceScripts = {
                         new_packet[packetFields[i].layer] = {};
                         for (var j = 0; j < packetFields[i].fields.length; j++) {
                             console.log("copying field " + packetFields[i].fields[j]);
-                            if(packet.hasOwnProperty(packetFields[i].fields[j])){
+                            if(packet[packetFields[i].layer].hasOwnProperty(packetFields[i].fields[j])){
                                 console.log("FOUND field!");
                                 new_packet[packetFields[i].layer][ packetFields[i].fields[j] ] = packet[packetFields[i].layer][ packetFields[i].fields[j] ];
                                 console.log(new_packet[packetFields[i].layer]);
