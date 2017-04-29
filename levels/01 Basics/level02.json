@@ -32,7 +32,7 @@
 		},
 		{
 			type:"packet",
-			at:1500,
+			at:2000,
 			from:"Bob",
 			payload:{
 				network:{srcip:"Bob",dstip:"Alice"}
@@ -40,7 +40,7 @@
 		},
 		{
 			type:"packet",
-			at:2500,
+			at:4000,
 			from:"Bob",
 			payload:{
 				network:{srcip:"Bob",dstip:"Alice"}
