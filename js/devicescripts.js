@@ -36,20 +36,24 @@ var deviceScripts = {
     modem: {
         onPacketReceived: function(device, packet) {
             if(packet.network.dstip == device.id){//look up ip in NAT table
-                var new_packet = {
-                    network: {
-                        srcip: packet.network.srcip,
-                        dstip: getPortRecipient(device.id, 0)
+                var new_packet = {};
+                for (var i = 0; i < packetFields.length; i++) {
+                    new_packet[packetFields[i].layer] = {};
+                    for (var j = 0; j < packetFields[i].fields.length; j++) {
+                        new_packet[packetFields[i].layer][ packetFields[i].fields[j] ] = packet[packetFields[i].layer][ packetFields[i].fields[j] ];
                     }
-                };
+                }
+                new_packet.network.dstip = getPortRecipient(device.id, 0);
                 sendPacket(device.id, 0, new_packet);
             } else { //replace src ip with device IP and save in NAT table
-                var new_packet = {
-                    network: {
-                        srcip: device.id,
-                        dstip: packet.network.dstip
+                var new_packet = {};
+                for (var i = 0; i < packetFields.length; i++) {
+                    new_packet[packetFields[i].layer] = {};
+                    for (var j = 0; j < packetFields[i].fields.length; j++) {
+                        new_packet[packetFields[i].layer][ packetFields[i].fields[j] ] = packet[packetFields[i].layer][ packetFields[i].fields[j] ];
                     }
-                };
+                }
+                new_packet.network.srcip = device.id;
                 sendPacket(device.id, 1, new_packet);
             }
 
