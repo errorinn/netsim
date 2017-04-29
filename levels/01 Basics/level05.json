@@ -41,7 +41,7 @@
 			at:50,
 			from:"Alice",
 			payload:{
-				network:{dstip:"Google"}
+				network:{srcip: "Alice", dstip:"Google"}
 			}
 		},
 		{
@@ -49,7 +49,7 @@
 			at:80,
 			from:"Google",
 			payload:{
-				network:{dstip:"Home"}
+				network:{srcip: "Google", dstip:"Home"}
 			}
 		}
 	],
