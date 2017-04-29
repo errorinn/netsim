@@ -3,15 +3,16 @@
 		{
 			id:"Alice",
 			ports:1,
+			image:"iphone-1",
 			x:0.25,
-			y:0.25,
+			y:0.5,
 			player:true
 		},
 		{
 			id:"Bob",
 			ports:1,
 			x:0.75,
-			y:0.25
+			y:0.5
 		}
 	],
 	links:[
@@ -23,7 +24,7 @@
 	timeline:[
 		{
 			type:"packet",
-			at:50,
+			at:500,
 			from:"Bob",
 			payload:{
 				network:{srcip:"Bob",dstip:"Alice"}
@@ -31,7 +32,7 @@
 		},
 		{
 			type:"packet",
-			at:1050,
+			at:1500,
 			from:"Bob",
 			payload:{
 				network:{srcip:"Bob",dstip:"Alice"}
@@ -39,7 +40,7 @@
 		},
 		{
 			type:"packet",
-			at:2050,
+			at:2500,
 			from:"Bob",
 			payload:{
 				network:{srcip:"Bob",dstip:"Alice"}
@@ -55,5 +56,5 @@
 			}
 		}
 	],
-	nextLevel:"01 Basics/level03.json"
+	nextLevel:3
 }
