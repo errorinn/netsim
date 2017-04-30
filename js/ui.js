@@ -58,6 +58,8 @@ function createPacketEditor(index, packet) {
 		str += "</fieldset>";
 	}
 
+	str += "<p>Repeat: <input type=\"text\" id=\"repeat\" style=\"width:40px;\" value=\""+(packet.hasOwnProperty("repeat") ? packet.repeat : 1)+"\"></p>";
+
 	$("#editor").html(str);
 	$('#editor').dialog({
 		title: index < 0 ? "Add packet" : "Update packet",
@@ -71,6 +73,7 @@ function createPacketEditor(index, packet) {
 function updatePlayerPacket(index) {
 	playerPackets[index] = {
 		from: $("#pktFrom").val(),
+		repeat: $("#repeat").val(),
 		payload:{}
 	};
 
