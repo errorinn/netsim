@@ -79,7 +79,9 @@ var deviceScripts = {
             if(!found){
                 //broadcast packet to all ports except where it was received
                 for(var i=0; i<device.ports.length; i++){
-                    sendPacket(device.id, i, packet);
+                    if(i != portNum){
+                        sendPacket(device.id, i, packet);
+                    }
                 }
             }
             //update rules with info from this packet
