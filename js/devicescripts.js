@@ -78,6 +78,7 @@ var deviceScripts = {
             }
             if(!found){
                 //broadcast packet to all ports except where it was received
+                console.log("Sending packet doesn "+ device.ports + " ports");
                 for(var i=0; i<device.ports; i++){
                     sendPacket(device.id, i, packet);
                 }
