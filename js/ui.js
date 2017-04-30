@@ -21,6 +21,7 @@ function doPacketAnimation(src, dst, payload) {
 	var tween = game.add.tween(pkt);
 	pkt.dst = dst;
 	pkt.payload = payload;
+	pkt.portNum = getRemotePort(src, dst);
 	tween.to({x: devices[dst].sprite.centerX - 16, y: devices[dst].sprite.centerY - 16}, 3000, Phaser.Easing.Sinusoidal.InOut);
 	tween.onComplete.add(donePacket, pkt);
 	tween.start();

@@ -141,6 +141,15 @@ function getPortRecipient(from, portNum) {
 
 }
 
+// WARNING: this should only be called by the animator
+// devicescripts should not be able to access it
+function getRemotePort(src, dst) {
+	for (int i = 0; i < level.links.length; i++) {
+		if (level.links[i].src == src && level.links[i].dst == dst) return level.links[i].dstport;
+		if (level.links[i].src == dst && level.links[i].dst == src) return level.links[i].srcport;
+	}
+}
+
 function update() {
 }
 
@@ -150,6 +159,7 @@ function donePacket() {
 	var youWin = true;
 
 	for (var i = 0; i < level.triggers.length; i++) {
+		// todo: need to check properties, device name here
 		if (level.triggers[i].hasOwnProperty("times")) level.triggers[i].times--;
 
 		if (satisfiesTrigger(this, level.triggers[i])) {
@@ -171,7 +181,7 @@ function donePacket() {
 	}
 
 	if (devices[this.dst].hasOwnProperty("script")) {
-		devices[this.dst].script.onPacketReceived(devices[this.dst], this.payload);
+		devices[this.dst].script.onPacketReceived(devices[this.dst], this.payload, this.portNum);
 	}
 }
 
