@@ -97,9 +97,6 @@ var deviceScripts = {
             }
         }
     }
-}
-
-
     
 }
 
