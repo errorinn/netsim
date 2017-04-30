@@ -68,7 +68,7 @@ var deviceScripts = {
         }
     },
     switch: {
-        onPacketReceived: function(device, packet) {
+        onPacketReceived: function(device, packet, portNum) {
             var found = false;
             for (var i = 0; (i < device.rules.length) && !found; i++) {
                 if (device.rules[i].dstip == packet.network.dstip) {
@@ -79,7 +79,7 @@ var deviceScripts = {
             if(!found){
                 //broadcast packet to all ports except where it was received
                 console.log("Sending packet doesn "+ device.ports + " ports");
-                for(var i=0; i<device.ports; i++){
+                for(var i=0; i<device.ports.length; i++){
                     sendPacket(device.id, i, packet);
                 }
             }
@@ -93,7 +93,7 @@ var deviceScripts = {
             if(!found){
                 device.rules[device.rules.length] = {
                     dstip: packet.network.srcip,
-                    portNum: 3
+                    portNum: portNum
                 }
             }
         }
