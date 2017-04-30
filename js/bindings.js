@@ -76,6 +76,13 @@ function btnEdit() {
 
 function btnLaunch() {
 	var pkt = playerPackets[this.launcherIndex];
-	doPacketAnimation(pkt.from, getDefaultRecipient(pkt.from), pkt.payload);
+
+	if (pkt.hasOwnProperty("repeat") && pkt.repeat > 1) {
+		for (var i = 0; i < pkt.repeat; i++) {
+			game.time.events.add( 100 * i, playPacket, pkt );
+		}
+	} else {
+		doPacketAnimation(pkt.from, getDefaultRecipient(pkt.from), pkt.payload);
+	}
 }
 
