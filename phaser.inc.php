@@ -144,7 +144,7 @@ function getPortRecipient(from, portNum) {
 // WARNING: this should only be called by the animator
 // devicescripts should not be able to access it
 function getRemotePort(src, dst) {
-	for (int i = 0; i < level.links.length; i++) {
+	for (var i = 0; i < level.links.length; i++) {
 		if (level.links[i].src == src && level.links[i].dst == dst) return level.links[i].dstport;
 		if (level.links[i].src == dst && level.links[i].dst == src) return level.links[i].srcport;
 	}
