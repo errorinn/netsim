@@ -36,7 +36,8 @@
                         image: "server",
 			ports:1,
 			x:0.75,
-			y:0.5
+			y:0.5,
+                        script: deviceScript.ping
 		}
 	],
 	links:[
@@ -60,7 +61,7 @@
 	timeline:[
 		{
 			type:"packet",
-			at:100,
+			at:500,
 			from:"Google",
 			payload:{
 				network:{srcip:"Google",dstip:"Bob"}
@@ -68,7 +69,7 @@
 		},
 		{
 			type:"packet",
-			at:150,
+			at:1000,
 			from:"Google",
 			payload:{
 				network:{srcip:"Google",dstip:"Bob"}
@@ -76,7 +77,7 @@
 		},
 		{
 			type:"packet",
-			at:200,
+			at:2000,
 			from:"Google",
 			payload:{
 				network:{srcip:"Google",dstip:"Bob"}
@@ -84,7 +85,7 @@
 		},
 		{
 			type:"packet",
-			at:380,
+			at:3000,
 			from:"Charlie",
 			payload:{
 				network:{srcip:"Charlie",dstip:"Google"},
@@ -93,7 +94,7 @@
 		},
 		{
 			type:"packet",
-			at:700,
+			at:5000,
 			from:"Charlie",
 			payload:{
 				network:{srcip:"Charlie",dstip:"Google"},
@@ -101,14 +102,15 @@
 			}
 		}
 	],
-	triggers:{
-		t0:{
+	triggers:[
+            {
+	    
 			type:"packet",
 			device:"Alice",
 			payload:{
-				network:{dstip:"Charlie"}
+				network:{srcip: "Google", dstip:"Charlie"}
 			}
-		}
-	},
+	    }
+        ],
 	nextLevel: "03 DoS/dos01.json"
 }
