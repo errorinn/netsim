@@ -2,7 +2,7 @@
 	devices:[
 		{
 			id:"Alice",
-			type:"NullComputer",
+                        image: "macbook",
 			ports:1,
 			x:0.25,
 			y:0.25,
@@ -10,28 +10,30 @@
 		},
 		{
 			id:"Bob",
-			type:"NullComputer",
+                        image: "macbook",
 			ports:1,
 			x:0.25,
 			y:0.5
 		},
 		{
 			id:"Charlie",
-			type:"NullComputer",
+                        image: "iphone-1",
 			ports:1,
 			x:0.25,
 			y:0.75
 		},
 		{
 			id:"Central Hub",
-			type:"Switch",
+                        image: "router",
 			ports:4,
 			x:0.5,
-			y:0.5
+			y:0.5,
+                        script: deviceScripts.switch,
+                        rules: []
 		},
 		{
 			id:"Google",
-			type:"NullComputer",
+                        image: "server",
 			ports:1,
 			x:0.75,
 			y:0.5

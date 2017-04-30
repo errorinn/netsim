@@ -66,9 +66,40 @@ var deviceScripts = {
             }
 
         }
+    },
+    switch: {
+        onPacketReceived: function(device, packet) {
+            var found = false;
+            for (var i = 0; (i < device.rules.length) && !found; i++) {
+                if (device.rules[i].dstip == packet.network.dstip) {
+                    sendPacket(device.id, device.rules[i].portNum, packet);
+                    found = true;
+                }
+            }
+            if(!found){
+                //broadcast packet to all ports except where it was received
+                for(var i=0; i<device.ports; i++){
+                    sendPacket(device.id, i, packet);
+                }
+            }
+            //update rules with info from this packet
+            var found = false;
+            for (var i = 0; (i < device.rules.length) && !found; i++) {
+                if (device.rules[i].dstip == packet.network.srcip) {
+                    found = true;
+                }
+            }
+            if(!found){
+                device.rules[device.rules.length] = {
+                    dstip: packet.network.srcip,
+                    portNum: 3
+                }
+            }
+        }
     }
+}
 
 
-        
+    
 }
 
