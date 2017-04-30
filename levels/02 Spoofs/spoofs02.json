@@ -37,7 +37,7 @@
 			ports:1,
 			x:0.75,
 			y:0.5,
-                        script: deviceScript.ping
+                        script: deviceScripts.ping
 		}
 	],
 	links:[
