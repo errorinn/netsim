@@ -86,6 +86,7 @@ var deviceScripts = {
             var found = false;
             for (var i = 0; (i < device.rules.length) && !found; i++) {
                 if (device.rules[i].dstip == packet.network.srcip) {
+                    device.rules[i].portNum = portNum;
                     found = true;
                 }
             }
