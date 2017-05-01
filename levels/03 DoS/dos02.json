@@ -2,7 +2,7 @@
 	devices:[
 		{
 			id:"Alice",
-                        image: "imac",
+                        image: "macbook",
 			ports:1,
 			x:0.25,
 			y:0.2,
@@ -10,6 +10,7 @@
 		},
 		{
 			id:"Zombie 1",
+                        image: "macbook",
 			ports:1,
 			x:0.25,
 			y:0.4,
@@ -44,6 +45,7 @@
 			ports:5,
 			x:0.7,
 			y:0.5,
+                        script: deviceScripts.firewall,
 			rules:[
 				{srcip:"Alice"}
 			]
