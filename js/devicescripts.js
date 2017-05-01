@@ -137,7 +137,7 @@ var deviceScripts = {
         onPacketReceived: function(device, packet, portNum) {
             if(packet.hasOwnProperty("transport") && packet["transport"].hasOwnProperty("proto")){
                 if(packet.transport.proto == "encryption"){
-                    if(packet.hasOwnProperty("application"]) && packet["application"].hasOwnProperty("type")){
+                    if(packet.hasOwnProperty("application") && packet["application"].hasOwnProperty("type")){
                     var type = packet.application.payload;
 
                     switch(type) {
