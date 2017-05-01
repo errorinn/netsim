@@ -19,7 +19,8 @@
 			id:"Alice",
 			ports:1,
 			x:0.25,
-			y:0.6
+			y:0.6,
+                        script: deviceScripts.encryption
 		},
 		{
 			id:"Eve",
@@ -34,7 +35,8 @@
                         image: "iphone-1",
 			ports:1,
 			x:0.75,
-			y:0.6
+			y:0.6,
+                        script: deviceScripts.encryption
 		}
 	],
 	links:[
