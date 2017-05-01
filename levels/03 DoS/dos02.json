@@ -2,7 +2,7 @@
 	devices:[
 		{
 			id:"Alice",
-			type:"NullComputer",
+                        image: "imac",
 			ports:1,
 			x:0.25,
 			y:0.2,
@@ -10,7 +10,6 @@
 		},
 		{
 			id:"Zombie 1",
-			type:"NullComputer",
 			ports:1,
 			x:0.25,
 			y:0.4,
@@ -18,7 +17,7 @@
 		},
 		{
 			id:"Zombie 2",
-			type:"NullComputer",
+                        image: "iphone-1",
 			ports:1,
 			x:0.25,
 			y:0.6,
@@ -26,7 +25,6 @@
 		},
 		{
 			id:"Zombie 3",
-			type:"NullComputer",
 			ports:1,
 			x:0.25,
 			y:0.8,
@@ -34,7 +32,7 @@
 		},
 		{
 			id:"Google",
-			type:"NullComputer",
+                        image: "server",
 			ports:1,
 			x:0.9,
 			y:0.5,
@@ -42,7 +40,7 @@
 		},
 		{
 			id:"Google's Firewall",
-			type:"Firewall",
+                        image: "router",
 			ports:5,
 			x:0.7,
 			y:0.5,
@@ -84,33 +82,33 @@
 			}
 		}
 	],
-	triggers:{
-		t0:{
+	triggers:[
+	    {
 			type:"packet",
 			device:"Google",
 			payload:{
 				network:{srcip:"Zombie 1", dstip:"Google"}
 			}
-		},
-		t1:{
+	    },
+	    {
 			type:"packet",
 			device:"Google",
 			payload:{
 				network:{srcip:"Zombie 2", dstip:"Google"}
 			}
-		},
-		t2:{
+	    },
+	    {
 			type:"packet",
 			device:"Google",
 			payload:{
 				network:{srcip:"Zombie 3", dstip:"Google"}
 			}
-		},
-		t3:{
+	    },
+	    {
 			type:"packet",
 			device:"Google",
 			times:60
-		}
-	},
-	nextLevel:"03 DoS/dos03.json"
+	    }
+        ],
+	nextLevel:10
 }

@@ -99,6 +99,14 @@ var deviceScripts = {
                 }
             }
         }
+    },
+    firewall: {
+        onPacketReceived: function(device, packet) {
+            if(device.rules.find(packet.network.srcip) == undefined){
+                sendPacket(device.id, 0, packet);
+            }
+
+        }
     }
     
 }
