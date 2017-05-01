@@ -112,6 +112,26 @@ var deviceScripts = {
             }
 
         }
+    },
+    broadcast: {
+        onPacketReceived: function(device, packet, portNum){
+            function checkRules(rule){
+                return rule.dstip == packet.network.dstip;
+            }
+
+            var rule = device.rules.find(checkRules);
+            if (rule != undefined){
+                sendPacket(device.id, rule.portNum, packet);
+            } else {
+                if(packet.network.dstip == "Broadcast"){
+                    for(var i=0; i<device.ports.length; i++){
+                        if(i != portNum){
+                            sendPacket(device.id, i, packet);
+                        }
+                    }
+                }
+            }
+        }
     }
     
 }
