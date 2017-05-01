@@ -10,7 +10,6 @@
 		{
 			id:"Example Bob",
                         image: "iphone-1",
-			type:"SimpleEncryptionComputer",
 			ports:1,
 			x:0.75,
 			y:0.35,
@@ -18,7 +17,6 @@
 		},
 		{
 			id:"Alice",
-			type:"SimpleEncryptionComputer",
 			ports:1,
 			x:0.25,
 			y:0.6
@@ -37,7 +35,6 @@
 		{
 			id:"Bob",
                         image: "iphone-1",
-			type:"SimpleEncryptionComputer",
 			ports:1,
 			x:0.75,
 			y:0.6
@@ -60,21 +57,21 @@
 	timeline:[
 		{
 			type:"packet",
-			at:50,
+			at:500,
 			from:"Alice",
 			payload:{
 				network:{srcip:"Alice",dstip:"Bob"},
-				transport:{proto:"encryptedmessage"},
+				transport:{proto:"encryption"},
 				application:{type:"keyrequest"}
 			}
 		},
 		{
 			type:"packet",
-			at:50,
+			at:500,
 			from:"Example Alice",
 			payload:{
 				network:{srcip:"Example Alice",dstip:"Example Bob"},
-				transport:{proto:"encryptedmessage"},
+				transport:{proto:"encryption"},
 				application:{type:"keyrequest"}
 			}
 		}
@@ -85,7 +82,7 @@
 			device:"Eve",
 			payload:{
 				network:{srcip:"Alice",dstip:"Bob"},
-				transport:{proto:"encryptedmessage"},
+				transport:{proto:"encryption"},
 				application:{type:"message",encryptionkey:"31337"}
 			}
 		},
@@ -94,7 +91,7 @@
 			device:"Bob",
 			payload:{
 				network:{srcip:"Alice"},
-				transport:{proto:"encryptedmessage"},
+				transport:{proto:"encryption"},
 				application:{type:"message",encryptionkey:"123456"}
 			}
 		}
