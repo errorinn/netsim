@@ -125,7 +125,7 @@ var deviceScripts = {
             } else {
                 if(packet.network.dstip == "Broadcast"){
                     for(var i=0; i<device.ports.length; i++){
-                        if(i != portNum){
+                        if((i != portNum) && (getPortRecipient(device.id, i) != "Google"){
                             sendPacket(device.id, i, packet);
                         }
                     }
