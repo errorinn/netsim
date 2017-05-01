@@ -2,17 +2,19 @@
 	devices:[
 		{
 			id:"Example Alice",
-			type:"SimpleEncryptionComputer",
 			ports:1,
 			x:0.25,
-			y:0.35
+			y:0.35,
+                        script: deviceScripts.encryption
 		},
 		{
 			id:"Example Bob",
+                        image: "iphone-1",
 			type:"SimpleEncryptionComputer",
 			ports:1,
 			x:0.75,
-			y:0.35
+			y:0.35,
+                        script: deviceScripts.encryption
 		},
 		{
 			id:"Alice",
@@ -23,6 +25,7 @@
 		},
 		{
 			id:"Eve",
+                        image: "macbook",
 			type:"Switch",
 			ports:2,
 			x:0.5,
@@ -33,6 +36,7 @@
 		},
 		{
 			id:"Bob",
+                        image: "iphone-1",
 			type:"SimpleEncryptionComputer",
 			ports:1,
 			x:0.75,
@@ -75,8 +79,8 @@
 			}
 		}
 	],
-	triggers:{
-		t0:{
+	triggers:[
+		{
 			type:"packet",
 			device:"Eve",
 			payload:{
@@ -85,7 +89,7 @@
 				application:{type:"message",encryptionkey:"31337"}
 			}
 		},
-		t1:{
+		{
 			type:"packet",
 			device:"Bob",
 			payload:{
@@ -94,5 +98,5 @@
 				application:{type:"message",encryptionkey:"123456"}
 			}
 		}
-	}
+        ]
 }
