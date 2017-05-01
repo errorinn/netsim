@@ -24,13 +24,10 @@
 		{
 			id:"Eve",
                         image: "macbook",
-			type:"Switch",
 			ports:2,
 			x:0.5,
 			y:0.6,
-			player:true,
-			defaultBehaviour:false,
-			preload:true
+			player:true
 		},
 		{
 			id:"Bob",
