@@ -2,7 +2,7 @@
 	devices:[
 		{
 			id:"Alice",
-			type:"NullComputer",
+                        image: "imac",
 			ports:1,
 			x:0.25,
 			y:0.5,
@@ -10,7 +10,7 @@
 		},
 		{
 			id:"Google",
-			type:"NullComputer",
+                        image: "server",
 			ports:1,
 			x:0.75,
 			y:0.5,
@@ -31,5 +31,5 @@
 			times:50
 		}
 	],
-	nextLevel:"03 DoS/dos02.json"
+	nextLevel:9
 }
