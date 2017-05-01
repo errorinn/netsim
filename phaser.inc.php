@@ -12,8 +12,8 @@ var packetFields = [
 	{layer:"transport", fields:[
 		"proto", "ttl"
 	]},
-	{layer:"application", fields:[
-		"payload"
+        {layer:"application", fields:[
+                "type", "payload"
 	]}
 ];
 
