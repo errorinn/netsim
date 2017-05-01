@@ -138,7 +138,7 @@ var deviceScripts = {
             if(packet.hasOwnProperty("transport") && packet["transport"].hasOwnProperty("proto")){
                 if(packet.transport.proto == "encryption"){
                     if(packet.hasOwnProperty("application") && packet["application"].hasOwnProperty("type")){
-                    var type = packet.application.payload;
+                    var type = packet.application.type;
 
                     switch(type) {
                         case "keyrequest": 
