@@ -102,11 +102,14 @@ var deviceScripts = {
     },
     firewall: {
         onPacketReceived: function(device, packet) {
-            if(device.rules.indexOf(packet.network.srcip) < 0){
+
+            function checkRules(rule){
+                return rule.srcip == packet.network.srcip;
+            }
+
+            if(device.rules.find(checkRules) == undefined){
                 sendPacket(device.id, 0, packet);
             }
-            console.log(device.rules);
-            console.log(packet.network.srcip);
 
         }
     }
