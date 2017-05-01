@@ -105,6 +105,8 @@ var deviceScripts = {
             if(device.rules.indexOf(packet.network.srcip) < 0){
                 sendPacket(device.id, 0, packet);
             }
+            console.log(device.rules);
+            console.log(packet.network.srcip);
 
         }
     }
