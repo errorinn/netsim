@@ -83,16 +83,16 @@
 			payload:{
 				network:{srcip:"Alice",dstip:"Bob"},
 				transport:{proto:"encryption"},
-				application:{type:"message",encryptionkey:"31337"}
+				application:{type:"message",key:"31337"}
 			}
 		},
 		{
 			type:"packet",
 			device:"Bob",
 			payload:{
-				network:{srcip:"Alice"},
+				network:{srcip:"Alice", dstip: "Bob"},
 				transport:{proto:"encryption"},
-				application:{type:"message",encryptionkey:"123456"}
+				application:{type:"message",key:"123456"}
 			}
 		}
         ]

@@ -13,7 +13,7 @@ var packetFields = [
 		"proto", "ttl"
 	]},
         {layer:"application", fields:[
-                "type", "payload"
+                "type", "key"
 	]}
 ];
 

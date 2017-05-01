@@ -152,7 +152,7 @@ var deviceScripts = {
                                 },
                                 application: {
                                     type: "keyresponse",
-                                    payload: "123456"
+                                    key: "123456"
                                 }
                             }
                             sendPacket(device.id, portNum, new_packet);
@@ -168,7 +168,7 @@ var deviceScripts = {
                                 },
                                 application: {
                                     type: "message",
-                                    payload: packet.application.payload
+                                    key: packet.application.key
                                 }
                             }
                             sendPacket(device.id, portNum, new_packet);
