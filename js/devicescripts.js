@@ -167,9 +167,11 @@ var deviceScripts = {
                                     proto: "encryption"
                                 },
                                 application: {
-                                    type: "message"
+                                    type: "message",
+                                    payload: packet.application.payload
                                 }
                             }
+                            sendPacket(device.id, portNum, new_packet);
                             break;
                         default:
                             break;
