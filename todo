@@ -7,7 +7,6 @@ blocking
 - update "you win" dialog to handle no nextLevel property
 - prettier level listing
 - resize game on resize viewport (attempt at this at top of ui.js but it's laggy)
-- 'repeat' packet property
 - device scripts (?list)
 - method to work on test levels
 - hosted version on DO
