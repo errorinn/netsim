@@ -40,7 +40,7 @@
 			device:"Alice",
 			payload:{
 				network:{srcip:"Google", dstip:"Alice"}
-			}
+			},
 			times:5
                 }
         ],
