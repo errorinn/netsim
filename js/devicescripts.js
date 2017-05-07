@@ -188,6 +188,8 @@ var deviceScripts = {
                 if (device.rules[i].dstip == packet.network.dstip) {
                     if(portNum == 0){
                         sendPacket(device.id, device.rules[i].portNum, packet);
+                    } else {
+                        sendPacket(device.id, 0, packet);
                     }
                 }
             }
