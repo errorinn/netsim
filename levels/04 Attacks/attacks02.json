@@ -40,10 +40,10 @@
 		{
 			id:"Proxy",
                         image: "server",
-			ports:1,
+			ports:2,
 			x:0.6,
 			y:0.4,
-                        script: deviceScripts.manualRouter
+                        script: deviceScripts.modem
 		}
 	],
 	links:[
@@ -64,7 +64,7 @@
 			dst:"Proxy", dstport:0
 		},
 		{
-			src:"Proxy", srcport:0,
+			src:"Proxy", srcport:1,
 			dst:"Blocked Site", dstport:0
 		}
 	],

@@ -41,7 +41,8 @@ INSERT INTO level (category_id, name, orderby, filename) VALUES
 	(3, 'DoS 2', 2, '03 DoS/dos02'),
 	(3, 'DoS 3', 3, '03 DoS/dos03'),
 
-	(4, 'Attacks 1', 1, '04 Attacks/attacks01')
+	(4, 'Attacks 1', 1, '04 Attacks/attacks01'),
+	(4, 'Attacks 2', 2, '04 Attacks/attacks02')
 ;
 
 CREATE TABLE solns (
