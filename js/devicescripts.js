@@ -192,7 +192,7 @@ var deviceScripts = {
 		    }
 		}
 	    }
-	},
+	}
     }                        
     
 }
