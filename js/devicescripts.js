@@ -141,7 +141,6 @@ var deviceScripts = {
                 if(packet.transport.proto == "encryption"){
                     if(packet.hasOwnProperty("application") && packet["application"].hasOwnProperty("type")){
                     var type = packet.application.type;
-
                     switch(type) {
                         case "keyrequest": 
                             var new_packet = {
@@ -181,19 +180,19 @@ var deviceScripts = {
                     }
                 }
             }
-        },                  
-        tappedRouter: {//Note: port 0 should be hooked up to tap device
-	    onPacketReceived: function(device, packet, portNum) {
-		for (var i = 0; i < device.rules.length; i++) {
-	    	    if (device.rules[i].dstip == packet.network.dstip) {
-                        if(portNum == 0){
-                            sendPacket(device.id, device.rules[i].portNum, packet);
-                        }
-		    }
-		}
-	    }
-	}
-    }                        
+        }
+    },
+    tappedRouter: {//Note: port 0 should be hooked up to tap device
+        onPacketReceived: function(device, packet, portNum) {
+            for (var i = 0; i < device.rules.length; i++) {
+                if (device.rules[i].dstip == packet.network.dstip) {
+                    if(portNum == 0){
+                        sendPacket(device.id, device.rules[i].portNum, packet);
+                    }
+                }
+            }
+        }
+    }
     
 }
 
