@@ -111,5 +111,6 @@
 				application:{type:"message",key:"123456"}
 			}
 		}
-        ]
+        ],
+	nextLevel:10
 }
