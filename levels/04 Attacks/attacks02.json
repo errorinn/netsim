@@ -27,7 +27,7 @@
                         image: "server",
 			ports:1,
 			x:0.8,
-			y:0.2,
+			y:0.4,
 			player:false
 		},
 		{
@@ -61,10 +61,10 @@
 		},
 		{
 			src:"Censor", srcport:3,
-			dst:"Proxy", dstport:0
+			dst:"Proxy", dstport:1
 		},
 		{
-			src:"Proxy", srcport:1,
+			src:"Proxy", srcport:0,
 			dst:"Blocked Site", dstport:0
 		}
 	],
