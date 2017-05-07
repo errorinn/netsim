@@ -181,8 +181,18 @@ var deviceScripts = {
                     }
                 }
             }
-        }
-                            
+        },                  
+        tappedRouter: {//Note: port 0 should be hooked up to tap device
+	    onPacketReceived: function(device, packet, portNum) {
+		for (var i = 0; i < device.rules.length; i++) {
+	    	    if (device.rules[i].dstip == packet.network.dstip) {
+                        if(portNum == 0){
+                            sendPacket(device.id, device.rules[i].portNum, packet);
+                        }
+		    }
+		}
+	    }
+	},
     }                        
     
 }

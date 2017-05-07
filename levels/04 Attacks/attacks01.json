@@ -28,10 +28,10 @@
 			ports:3,
 			x:0.5,
 			y:0.6,
-                        script: deviceScripts.manualRouter,
+                        script: deviceScripts.tappedRouter,
 			rules:[
-				{dstip:"Alice", portNum:0},
-				{dstip:"Bob", portNum:1}
+				{dstip:"Alice", portNum:1},
+				{dstip:"Bob", portNum:2}
 			],
 			player:false
 		},
@@ -55,14 +55,14 @@
 	links:[
 		{
 			src:"Alice", srcport:0,
-			dst:"Router", dstport:0
-		},
-		{
-			src:"Router", srcport:1,
-			dst:"Bob", dstport:0
+			dst:"Router", dstport:1
 		},
 		{
 			src:"Router", srcport:2,
+			dst:"Bob", dstport:0
+		},
+		{
+			src:"Router", srcport:0,
 			dst:"Eve", dstport:0
 		},
 		{
