@@ -27,7 +27,7 @@
                         image: "server",
 			ports:1,
 			x:0.8,
-			y:0.4,
+			y:0.2,
 			player:false
 		},
 		{
@@ -39,10 +39,10 @@
 		},
 		{
 			id:"Proxy",
-                        image: "server",
+                        image: "router",
 			ports:2,
 			x:0.6,
-			y:0.4,
+			y:0.2,
                         script: deviceScripts.modem
 		}
 	],
@@ -79,7 +79,7 @@
 		},
 		{
 			type:"packet",
-			at:500,
+			at:1500,
 			from:"Alice",
 			payload:{
 				network:{srcip:"Alice",dstip:"Blocked Site"}
