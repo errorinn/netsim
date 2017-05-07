@@ -6,6 +6,7 @@ CREATE TABLE user (
 
 INSERT INTO user (name, password) VALUES ('erinn','$2y$10$n5ajLY.kMZVjLCNsUuPXFO70VUYLoolpQRGl3RCXOBVIaY4/peWXS');
 
+
 CREATE TABLE category (
 	id integer PRIMARY KEY,
 	name text,
