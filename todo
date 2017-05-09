@@ -1,15 +1,8 @@
 blocking
-- remove CSS lines from beginning of each level
-- update sprites & layouts in level files
-- update ui-specific mentions in level descrips
-- convert triggers in level files to arrays
-- update nextLevel in each file
 - update "you win" dialog to handle no nextLevel property
 - prettier level listing
 - resize game on resize viewport (attempt at this at top of ui.js but it's laggy)
-- device scripts (?list)
 - method to work on test levels
-- hosted version on DO
 
 nice to have
 - screenshots for level selector?
@@ -19,11 +12,8 @@ nice to have
 - only preload used device sprites
 - move levels to database
 - level editor
-- more variety in device sprites
-- slower intro/learning levels
 
 long term
-- licensing
 - non-php version
 --- load json/html via ajax
 --- remove login system
@@ -38,4 +28,3 @@ level ideas
 - privacy (see ISPs, who can read data, etc)
 - how protocols work (HTTP, DNS, email, DHCP...)
 
-test3
