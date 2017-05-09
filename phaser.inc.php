@@ -99,6 +99,8 @@ function create() {
 
 	if (!level.hasOwnProperty("triggers")) level.triggers = [];
 
+	$("#loading").hide();
+
 <?php if (LOGGEDIN) { ?>
 	game.input.keyboard.onPressCallback = function(e){ if (e == " ") {
 		if (game.paused) {

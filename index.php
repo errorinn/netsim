@@ -45,7 +45,6 @@ if (LOGGEDIN && !isset($_GET['level'])) {
 
 <?php if (LOGGEDIN) { ?>
 	<input type="button" value="Level list" onclick="location.href='./'">
-	<input type="button" value="Log out" onclick="location.href='./?logout'">
 <?php } ?>
 
 	<div id="leveldescrip" style="overflow:auto;">
@@ -86,5 +85,11 @@ if (LOGGEDIN && !isset($_GET['level'])) {
 	device images designed by 
 	<a href="http://www.flaticon.com/authors/madebyoliver">madebyoliver</a> from Flaticon
 </div>
+
+<div id="loading" style="position:absolute;top:0;left:0;right:0;bottom:0;background-color:#DDD;color:#222;text-align:center">
+	<h2>Netsim</h3>
+	<p>Loading...<p>
+</div>
+
 </body>
 </html>
