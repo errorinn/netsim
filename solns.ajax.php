@@ -1,6 +1,7 @@
 <?php
 
-require_once 'config.inc.php';
+require_once 'login.inc.php';
+
 if (!LOGGEDIN || !isset($_GET['method']) || !isset($_GET['level'])) exit('[]');
 $l = (int)$_GET['level'];
 if ($l < 0) exit('lol oops');

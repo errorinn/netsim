@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.inc.php';
+require_once 'login.inc.php';
 
 if (LOGGEDIN && !isset($_GET['level'])) {
 	include 'listing.inc.php';

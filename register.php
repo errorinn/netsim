@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.inc.php';
+require_once 'login.inc.php';
 
 if (isset($_POST['reg_username']) && isset($_POST['reg_password'])) {
 	$userq->bindValue(':name', $_POST['reg_username']);
