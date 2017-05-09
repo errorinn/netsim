@@ -1,0 +1,79 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			ports:1,
+			x:0.2,
+			y:0.6,
+			player:true
+		},
+		{
+			id:"Google",
+			image:"server",
+			ports:1,
+			x:0.8,
+			y:0.4,
+                        script: deviceScripts.ping
+		},
+		{
+			id:"Bob",
+			ports:1,
+			x:0.2,
+			y:0.2,
+			image:"macbook"
+		},
+		{
+			id:"Home",
+			image:"router",
+			ports:3,
+			x:0.4,
+			y:0.4,
+                        script: deviceScripts.modem
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Home", dstport:1
+		},
+		{
+			src:"Bob", srcport:0,
+			dst:"Home", dstport:2
+		},
+		{
+			src:"Home", srcport:0,
+			dst:"Google", dstport:0
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:500,
+			from:"Alice",
+			payload:{
+				network:{srcip: "Alice", dstip:"Google"}
+			}
+		},
+		{
+			type:"packet",
+			at:1000,
+			from:"Bob",
+			payload:{
+				network:{srcip: "Bob", dstip:"Google"},
+				transport:{proto:"example"}
+			}
+		}
+	],
+	triggers:[
+            {
+			type:"packet",
+			device:"Alice",
+			payload:{
+				network:{srcip:"Google", dstip:"Alice"},
+				transport:{proto:"ICMP"}
+			}
+            }
+	    
+        ],
+	nextLevel:6
+}

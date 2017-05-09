@@ -1,0 +1,24 @@
+
+<p>Netsim is a simulator game intended to teach you the basics of how computer networks function, with an emphasis on security.  You will learn how to perform attacks that real hackers use, and see how they work in our simulator!</p>
+
+<p>Netsim is completely free to play.  To get started, log in below or register a new account.</p>
+
+<br><br>
+
+<?php if (isset($login_error)) { ?>
+<div class="ui-widget">
+	<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+		<?=$login_error?></p>
+	</div>
+</div>
+<?php } ?>
+
+<form method="post" action="./">
+	Username:<br>
+	<input type="text" name="username"><br>
+	Password:<br>
+	<input type="password" name="password"><br><br>
+	<input type="submit" value="Log in">
+	<a href="./register.php">Register</a>
+</form>

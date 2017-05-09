@@ -1,0 +1,21 @@
+
+<p>The router in this level responds to a special type of ping, called a "Broadcast ping".  When a router receives a packet that is addressed
+to the broadcast address, it replicates it and sends it to <em>all</em> the machines on the network.
+
+<p>In this level, Google has received an <strong>upgrade</strong>: it can no longer be DoS'd from a single computer.  
+Multiple computers will be required to coordinate with each other in order to send enough traffic.
+
+<p>However, you only have control of a single computer!  You will have to implement a <strong>smurf attack</strong>.  In a smurf attack, you leverage 
+other devices to send traffic <em>for you</em>.
+
+<p>Experiment with sending broadcast pings by sending a message with the dstip set to "Broadcast".  
+See if you can overwhelm Google by combining this with what you learned about spoofing packet source addresses.
+
+<h3>Level Objectives</h3>
+
+<ul>
+	<li>Send a ping to the IP <strong>Broadcast</strong></li>
+	<li>Can you get Barbara to send a packet to Google?</li>
+	<li>Overwhelm Google with traffic</li>
+	<li>Try to do this with only one packet in the Editor! (you may use the "repeat" feature)
+</ul>

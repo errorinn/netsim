@@ -1,0 +1,108 @@
+{
+	devices:[
+		{
+			id:"Alice",
+                        image: "macbook",
+			ports:1,
+			x:0.25,
+			y:0.2,
+			player:true
+		},
+		{
+			id:"Barbara",
+                        image: "iphone-1",
+			ports:1,
+			x:0.25,
+			y:0.4,
+                        script: deviceScripts.ping
+		},
+		{
+			id:"Carol",
+                        image: "macbook",
+			ports:1,
+			x:0.25,
+			y:0.6,
+                        script: deviceScripts.ping
+		},
+		{
+			id:"Darcy",
+			ports:1,
+			x:0.25,
+			y:0.8,
+                        script: deviceScripts.ping
+		},
+		{
+			id:"Google",
+                        image: "server",
+			ports:1,
+			x:0.8,
+			y:0.5,
+			bufferWait:170
+		},
+		{
+			id:"Router",
+                        image: "router",
+			ports:5,
+			x:0.5,
+			y:0.5,
+                        script: deviceScripts.broadcast,
+			rules:[
+				{dstip:"Alice",portNum:0},
+				{dstip:"Barbara",portNum:1},
+				{dstip:"Carol",portNum:2},
+				{dstip:"Darcy",portNum:3},
+				{dstip:"Google",portNum:4}
+			]
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Router", dstport:0
+		},
+		{
+			src:"Barbara", srcport:0,
+			dst:"Router", dstport:1
+		},
+		{
+			src:"Carol", srcport:0,
+			dst:"Router", dstport:2
+		},
+		{
+			src:"Darcy", srcport:0,
+			dst:"Router", dstport:3
+		},
+		{
+			src:"Google", srcport:0,
+			dst:"Router", dstport:4
+		}
+	],
+	timeline:[],
+	triggers:[
+		{
+			type:"packet",
+			device:"Google",
+			payload:{
+				network:{srcip:"Barbara", dstip:"Google"}
+			},
+			times:20
+		},
+		{
+			type:"packet",
+			device:"Google",
+			payload:{
+				network:{srcip:"Carol", dstip:"Google"}
+			},
+			times:20
+		},
+		{
+			type:"packet",
+			device:"Google",
+			payload:{
+				network:{srcip:"Darcy", dstip:"Google"}
+			},
+			times:20
+		}
+        ],
+	nextLevel:11
+}

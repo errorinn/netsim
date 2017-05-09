@@ -1,0 +1,17 @@
+
+<p>So far we have seen very basic packets. These packets have shown only the source (who sent the packet) and the
+destination (who received the packet). In this level, we will see a more complex packet that will give the recipient
+information about how to respond.
+
+<p>Pause the simulation to view the packet sent from Alice's computer to Google. There is a new header under the
+<strong>transport layer</strong>. The header, <strong>proto</strong> defines the <strong>protocol</strong> that will
+be run on this layer. The protocol listed is <strong>ICMP</strong>, which is used to <strong>ping</strong> computers. When a
+computer receives a packet with an ICMP echo request (ping) they respond by sending back a packet with an ICMP echo
+(pong). Resume the simulation and notice the response packet sent from Google to Alice's computer.
+
+
+<h3>Level Objectives</h3>
+
+<ul>
+    <li>To complete this level, you must send 4 more ICMP echo requests from Alice to Google. Proceed as before, by clicking the + to add new packets. Remember to fill in the new <strong>transport layer</strong> header proto header field.</li>
+</ul>

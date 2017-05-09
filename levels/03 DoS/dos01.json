@@ -1,0 +1,35 @@
+{
+	devices:[
+		{
+			id:"Alice",
+                        image: "imac",
+			ports:1,
+			x:0.25,
+			y:0.5,
+			player:true
+		},
+		{
+			id:"Google",
+                        image: "server",
+			ports:1,
+			x:0.75,
+			y:0.5,
+			bufferWait:260
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Google", dstport:0
+		}
+	],
+	timeline:[],
+	triggers:[
+		{
+			type:"packet",
+			device:"Google",
+			times:50
+		}
+	],
+	nextLevel:9
+}

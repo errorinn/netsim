@@ -1,0 +1,60 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			ports:1,
+			image:"iphone-1",
+			x:0.25,
+			y:0.5,
+			player:true
+		},
+		{
+			id:"Bob",
+			ports:1,
+			x:0.75,
+			y:0.5
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Bob", dstport:0
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:500,
+			from:"Bob",
+			payload:{
+				network:{srcip:"Bob",dstip:"Alice"}
+			}
+		},
+		{
+			type:"packet",
+			at:2000,
+			from:"Bob",
+			payload:{
+				network:{srcip:"Bob",dstip:"Alice"}
+			}
+		},
+		{
+			type:"packet",
+			at:4000,
+			from:"Bob",
+			payload:{
+				network:{srcip:"Bob",dstip:"Alice"}
+			}
+		}
+	],
+	triggers:[
+		{
+			type:"packet",
+			device:"Bob",
+			payload:{
+				network:{srcip:"Alice", dstip:"Bob"}
+			}
+		}
+	],
+	nextLevel:3
+}

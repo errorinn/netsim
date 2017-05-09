@@ -1,0 +1,116 @@
+{
+	devices:[
+		{
+			id:"Alice",
+                        image: "macbook",
+			ports:1,
+			x:0.25,
+			y:0.25,
+			player: "true"
+		},
+		{
+			id:"Bob",
+                        image: "macbook",
+			ports:1,
+			x:0.25,
+			y:0.5
+		},
+		{
+			id:"Charlie",
+                        image: "iphone-1",
+			ports:1,
+			x:0.25,
+			y:0.75
+		},
+		{
+			id:"Central Hub",
+                        image: "router",
+			ports:4,
+			x:0.5,
+			y:0.5,
+                        script: deviceScripts.switch,
+                        rules: []
+		},
+		{
+			id:"Google",
+                        image: "server",
+			ports:1,
+			x:0.75,
+			y:0.5,
+                        script: deviceScripts.ping
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Central Hub", dstport:0
+		},
+		{
+			src:"Bob", srcport:0,
+			dst:"Central Hub", dstport:1
+		},
+		{
+			src:"Charlie", srcport:0,
+			dst:"Central Hub", dstport:2
+		},
+		{
+			src:"Google", srcport:0,
+			dst:"Central Hub", dstport:3
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:500,
+			from:"Google",
+			payload:{
+				network:{srcip:"Google",dstip:"Bob"}
+			}
+		},
+		{
+			type:"packet",
+			at:1000,
+			from:"Google",
+			payload:{
+				network:{srcip:"Google",dstip:"Bob"}
+			}
+		},
+		{
+			type:"packet",
+			at:2000,
+			from:"Google",
+			payload:{
+				network:{srcip:"Google",dstip:"Bob"}
+			}
+		},
+		{
+			type:"packet",
+			at:3000,
+			from:"Charlie",
+			payload:{
+				network:{srcip:"Charlie",dstip:"Google"},
+				transport:{proto:"ICMP"}
+			}
+		},
+		{
+			type:"packet",
+			at:5000,
+			from:"Charlie",
+			payload:{
+				network:{srcip:"Charlie",dstip:"Google"},
+				transport:{proto:"ICMP"}
+			}
+		}
+	],
+	triggers:[
+            {
+	    
+			type:"packet",
+			device:"Alice",
+			payload:{
+				network:{srcip: "Google", dstip:"Charlie"}
+			}
+	    }
+        ],
+	nextLevel: 8
+}

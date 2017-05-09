@@ -1,0 +1,19 @@
+
+<p>In this level, you can see an example of Bob sending Alice an <strong>encryption key</strong> in order to protect 
+their messages.  However, their simple protocol is vulnerable to a <strong>man-in-the-middle</strong> attack.
+
+<p>Eve has control over a router between Alice and Bob. She can see all messages that pass through this router and she can spoof messages from either Alice or Bob.</p>
+
+<p>To beat this level, you need to trick Alice into encrypting her messages using a key Eve knows: <strong>31337</strong>.  
+You must also trick Bob into thinking he is having a conversation with Alice as normal!  See if you can figure out how 
+to trick them both without them discovering your presence between them.
+
+<p><em><strong>Hint:</strong> there is an example of how the encryption protocol works at the top of the field.  Use the 
+<span class="button">pause</span> button to see what the values of the packet headers are in the protocol.</em>
+
+<h3>Level Objectives</h3>
+
+<ul>
+	<li>trick Alice into encrypting her message with Eve's key: 31337</li>
+	<li>make sure Bob can still read the message, by encrypting it with his key</li>
+</ul>
