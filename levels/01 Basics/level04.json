@@ -98,7 +98,7 @@
 			at:50,
 			from:"Alice",
 			payload:{
-				network:{dstip:"Bob"}
+				network:{dstip:"Bob",srcip:"Alice"}
 			}
 		},
 		{
@@ -106,7 +106,7 @@
 			at:150,
 			from:"Bob",
 			payload:{
-				network:{dstip:"Alice"}
+				network:{dstip:"Alice",srcip:"Bob"}
 			}
 		},
 		{
@@ -114,7 +114,7 @@
 			at:210,
 			from:"Alice",
 			payload:{
-				network:{dstip:"Carol"}
+				network:{dstip:"Carol",srcip:"Alice"}
 			}
 		},
 		{
@@ -122,7 +122,7 @@
 			at:270,
 			from:"Carol",
 			payload:{
-				network:{dstip:"Bob"}
+				network:{dstip:"Bob",srcip:"Carol"}
 			}
 		}
 	],
@@ -135,5 +135,5 @@
 			}
 		}
 	],
-	nextLevel:"01 Basics/level05.json"
+	nextLevel:5
 }

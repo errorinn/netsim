@@ -18,14 +18,15 @@ var deviceScripts = {
     ping: {
 		onPacketReceived: function(device, packet) {
                     if(packet.hasOwnProperty("transport") && packet["transport"].hasOwnProperty("proto")){
-                        if(packet.transport.proto == "ICMP"){
+                        var proto = packet.transport.proto.trim().toLowerCase();
+			if (proto == "icmp" || proto == "example") { // did this to make basics5 a little more clear
                             var new_packet = {
                                 network: {
                                     srcip: packet.network.dstip,
                                     dstip: packet.network.srcip
                                 },
                                 transport: {
-                                    proto: "ICMP"
+                                    proto: packet.transport.proto
                                 }
                             };
                             sendPacket(device.id, 0, new_packet);
@@ -33,9 +34,28 @@ var deviceScripts = {
                     }
 		}
     },
-    modem: {
-        onPacketReceived: function(device, packet) {
-            if(packet.network.dstip == device.id){//look up ip in NAT table
+	modem: {
+		onPacketReceived: function(device, packet, portNum) {
+			if (!device.hasOwnProperty("rules")) device.rules = {};
+
+			if (packet.network.dstip == device.id) {
+				// TODO: use something other than proto for NAT table
+				if (device.rules.hasOwnProperty( packet.transport.proto )) {
+					packet.network.dstip = device.rules[packet.transport.proto].dstip;
+					sendPacket(device.id, device.rules[packet.transport.proto].portNum, packet);
+				}
+			} else {
+				if (packet.hasOwnProperty("transport") && packet.transport.hasOwnProperty("proto")) {
+					device.rules[packet.transport.proto] = {portNum:portNum, dstip: packet.network.srcip};
+					console.log(device.rules);
+				}
+				packet.network.srcip = device.id;
+				sendPacket(device.id, 0, packet);
+			}
+		}
+	},
+
+/*            if(packet.network.dstip == device.id){//look up ip in NAT table
                 var new_packet = {};
                 for (var i = 0; i < packetFields.length; i++) {
                     if(packet.hasOwnProperty(packetFields[i].layer)){
@@ -66,7 +86,7 @@ var deviceScripts = {
             }
 
         }
-    },
+    },*/
     switch: {
         onPacketReceived: function(device, packet, portNum) {
             var found = false;

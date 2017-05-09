@@ -161,11 +161,10 @@ function donePacket() {
 	var youWin = true;
 
 	for (var i = 0; i < level.triggers.length; i++) {
-		// todo: need to check properties, device name here
-		if (level.triggers[i].hasOwnProperty("times")) level.triggers[i].times--;
-
 		if (satisfiesTrigger(this, level.triggers[i])) {
-			level.triggers[i].completed = true;
+			if (level.triggers[i].hasOwnProperty("times")) {
+				if (--level.triggers[i].times <= 0) level.triggers[i].completed = true;
+			} else level.triggers[i].completed = true;
 		}
 
 		if (!level.triggers[i].hasOwnProperty("completed")) youWin = false;
@@ -199,11 +198,9 @@ function satisfiesTrigger(pkt, t) {
 		var fields = Object.keys(t.payload[ layers[i] ]);
 		for (var j = 0; j < fields.length; j++) {
 			if (!pkt.payload[ layers[i] ].hasOwnProperty(fields[j])) return false;
-			if (pkt.payload[ layers[i] ][ fields[j] ] != t.payload[ layers[i] ][ fields[j] ]) return false;
+			if (pkt.payload[ layers[i] ][ fields[j] ].trim().toLowerCase() != t.payload[ layers[i] ][ fields[j] ].trim().toLowerCase()) return false;
 		}
 	}
-
-	if (t.hasOwnProperty("times") && t.times > 0) return false;
 
 	return true;
 }
