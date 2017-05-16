@@ -1,9 +1,11 @@
 var deviceScripts = {
 	manualRouter: {
 		onPacketReceived: function(device, packet) {
+			var newpkt = JSON.parse(JSON.stringify(packet));
+
 			for (var i = 0; i < device.rules.length; i++) {
 				if (device.rules[i].dstip == packet.network.dstip) {
-					sendPacket(device.id, device.rules[i].portNum, packet);
+					sendPacket(device.id, device.rules[i].portNum, newpkt);
 				}
 			}
 		}
@@ -12,6 +14,19 @@ var deviceScripts = {
 	hub: {
 		onPacketReceived: function (device, packet) {
 			//.
+		}
+	},
+
+	// proxy device for attacks1. again, this is quick'n'dirty for the workshop
+	proxy: {
+		onPacketReceived: function(device, packet, portNum) {
+			var newpkt = JSON.parse(JSON.stringify(packet));
+
+			if (packet.network.dstip == "Proxy") {
+				newpkt.network.dstip = "Blocked Site";
+			}
+
+			sendPacket(device.id, portNum == 0 ? 1 : 0, newpkt);
 		}
 	},
 

@@ -43,7 +43,7 @@
 			ports:2,
 			x:0.6,
 			y:0.2,
-                        script: deviceScripts.modem
+                        script: deviceScripts.proxy
 		}
 	],
 	links:[
