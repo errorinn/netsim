@@ -1,14 +1,15 @@
-blocking
-- update "you win" dialog to handle no nextLevel property
-- prettier level listing
-- method to work on test levels
+basics
+- game completion message
+- autofocus on register
+- attribution on listing, register
+- beta message
+- pressing enter on "add packet" dialog
 
 nice to have
+- method to work on test levels
 - resize game on resize viewport (attempt at this at top of ui.js but it's laggy)
-- screenshots for level selector?
 - differentiate launcher buttons
 - coloured packets
-- differentiate/label devices
 - only preload used device sprites
 - move levels to database
 - level editor
