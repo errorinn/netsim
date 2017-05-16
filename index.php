@@ -29,6 +29,7 @@ if (LOGGEDIN && !isset($_GET['level'])) {
 
 	<link href="css/jquery-ui.min.css" rel="stylesheet">
 	<style type="text/css">
+		* { font-family:Arial, Helvetica, sans-serif; }
 		body { margin: 0; overflow:hidden; }
 	</style>
 </head>

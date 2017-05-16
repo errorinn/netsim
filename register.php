@@ -43,6 +43,8 @@ include 'header.inc.php';
 	<p><input type="submit" value="Register"></p>
 </form>
 
+<div style="height:150px;"></div>
+
 <script type="text/javascript">$('.reg_username').focus();</script>
 
 <?php include 'footer.inc.php'; ?>
