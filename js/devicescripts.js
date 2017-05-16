@@ -1,7 +1,27 @@
 var deviceScripts = {
 	manualRouter: {
-		onPacketReceived: function(device, packet) {
+		onPacketReceived: function(device, packet, portNum) {
 			var newpkt = JSON.parse(JSON.stringify(packet));
+
+			if (packet.hasOwnProperty("transport") && packet.transport.hasOwnProperty("proto") && packet.transport.proto == "ICMP" && packet.transport.hasOwnProperty("ttl")) {
+				if (packet.transport.ttl > 0) {
+					newpkt.transport.ttl--;
+				} else {
+					newpkt.network.srcip = device.id;
+					newpkt.network.dstip = packet.network.srcip;
+					newpkt.transport.proto = "ICMP_ERROR";
+					sendPacket(device.id, portNum, newpkt);
+					return;
+				}
+			}
+
+			if (packet.hasOwnProperty("network") && packet.network.hasOwnProperty("dstip") && packet.network.dstip == device.id &&
+			    packet.hasOwnProperty("transport") && packet.transport.hasOwnProperty("proto") && packet.transport.proto == "ICMP") {
+			    	newpkt.network.srcip = device.id;
+				newpkt.network.dstip = packet.network.srcip;
+				sendPacket(device.id, portNum, newpkt);
+				return;
+			}
 
 			for (var i = 0; i < device.rules.length; i++) {
 				if (device.rules[i].dstip == packet.network.dstip) {

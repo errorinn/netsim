@@ -1,6 +1,7 @@
 
 function onDeviceClick() {
-	$("#subpane").html("<h3>Device info</h3><p><img src=\"./includes/"+(this.image||'imac')+".png\"></p><p>IP address: "+this.id+"</p>");
+	var ip = this.hasOwnProperty("secret") && this.secret ? "<i>secret</i>" : this.id;
+	$("#subpane").html("<h3>Device info</h3><p><img src=\"./includes/"+(this.image||'imac')+".png\"></p><p>IP address: "+ip+"</p>");
 	$("#subpane").show();
 	$("#subpane_close").show();
 	$("#leveldescrip").hide();
