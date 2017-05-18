@@ -4,6 +4,8 @@
 
 <p>Welcome to Netsim!  If this is your first time playing, we recommend you start from the first level below, and work your way forward.<p>
 
+<p>Please note that this project is still in <strong>beta</strong>. If you find any bugs, you can report them to <a href="https://twitter.com/errorinn">@errorinn</a> or open an issue on <a href="https://github.com/errorinn/netsim/issues">Github</a>.</p>
+
 <?php
 
 $res = $db->query("SELECT * FROM category ORDER BY orderby");

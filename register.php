@@ -31,6 +31,8 @@ include 'header.inc.php';
 
 <h3>Register</h3>
 
+<p>User accounts are only used to track your progress through levels. Please note that Netsim is still in <strong>beta</strong>, so we may need to reset the user database from time to time.</p>
+
 <?=(isset($login_error) ? "<p>".$login_error."</p>\n" : "")?>
 
 <form method="post" action="register.php" onsubmit="if (document.getElementById('reg_password').value == document.getElementById('confirm_password').value) return true; else { alert('Passwords don\'t match!'); return false; }">
