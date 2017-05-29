@@ -15,22 +15,24 @@
 
 	<link href="css/jquery-ui.min.css" rel="stylesheet">
 	<style type="text/css">
+	* { font-family:Arial, Helvetica, sans-serif; }
+
 	html {
-		height:100%;
 		margin:0;
+		min-height:100%;
 	}
 
 	body {
 		background:#DDD;
 		background:linear-gradient(#DDD, #FFF);
 		margin:0;
-		height:100%;
+		min-height:100%;
 	}
 
 	#content {
 		background-color:#FFF;
 		width:800px;
-		height:90%;
+		min-height:90%;
 		margin-left:auto;
 		margin-right:auto;
 		padding:30px;
@@ -43,5 +45,5 @@
 <body>
 <div id="content">
 
-<h1>CS4G Netsim</h1>
+<h1>Netsim</h1>
 

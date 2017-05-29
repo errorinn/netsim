@@ -1,0 +1,155 @@
+{
+	devices:[
+		{
+			id:"Alice",
+			ports:1,
+			x:0.1,
+			y:0.3,
+                        player: true
+		},
+		{
+			id:"Waterloo",
+                        image: "router",
+			ports:2,
+			x:0.25,
+			y:0.6,
+                        script: deviceScripts.manualRouter,
+			rules:[
+				{dstip:"Alice", portNum:0},
+				{dstip:"Toronto", portNum:1},
+				{dstip:"New York", portNum:1},
+				{dstip:"Mountain View", portNum:1},
+                                {dstip:"Google", portNum:1}
+			],
+			secret: true
+		},
+		{
+			id:"Toronto",
+                        image: "router",
+			ports:2,
+			x:0.4,
+			y:0.3,
+                        script: deviceScripts.manualRouter,
+			rules:[
+				{dstip:"Alice", portNum:0},
+				{dstip:"Waterloo", portNum:0},
+				{dstip:"New York", portNum:1},
+				{dstip:"Mountain View", portNum:1},
+                                {dstip:"Google", portNum:1}
+			],
+			secret: true
+		},
+		{
+			id:"New York",
+                        image: "router",
+			ports:2,
+			x:0.55,
+			y:0.6,
+                        script: deviceScripts.manualRouter,
+			rules:[
+				{dstip:"Alice", portNum:0},
+				{dstip:"Toronto", portNum:0},
+				{dstip:"Waterloo", portNum:0},
+				{dstip:"Mountain View", portNum:1},
+                                {dstip:"Google", portNum:1}
+			],
+			secret: true
+		},
+		{
+			id:"Mountain View",
+                        image: "router",
+			ports:2,
+			x:0.7,
+			y:0.3,
+                        script: deviceScripts.manualRouter,
+			rules:[
+				{dstip:"Alice", portNum:0},
+				{dstip:"Waterloo", portNum:0},
+				{dstip:"Toronto", portNum:0},
+				{dstip:"New York", portNum:0},
+                                {dstip:"Google", portNum:1}
+			],
+			secret: true
+		},
+		{
+			id:"Google",
+                        image: "server",
+			ports:1,
+			x:0.85,
+			y:0.6,
+			script: deviceScripts.ping
+		}
+	],
+	links:[
+		{
+			src:"Alice", srcport:0,
+			dst:"Waterloo", dstport:0
+		},
+		{
+			src:"Waterloo", srcport:1,
+			dst:"Toronto", dstport:0
+		},
+		{
+			src:"Toronto", srcport:1,
+			dst:"New York", dstport:0
+		},
+		{
+			src:"New York", srcport:1,
+			dst:"Mountain View", dstport:0
+		},
+		{
+			src:"Mountain View", srcport:1,
+			dst:"Google", dstport:0
+		}
+	],
+	timeline:[
+		{
+			type:"packet",
+			at:1000,
+			from:"Alice",
+			payload:{
+				network:{srcip:"Alice",dstip:"Google"},
+				transport:{proto:"ICMP", ttl:256}
+			}
+		},
+		{
+			type:"packet",
+			at:2000,
+			from:"Alice",
+			payload:{
+				network:{srcip:"Alice",dstip:"Google"},
+				transport:{proto:"ICMP", ttl:256}
+			}
+		}
+	],
+	triggers:[
+		{
+			type:"packet",
+			device:"Waterloo",
+			payload:{
+				network:{srcip:"Alice",dstip:"Waterloo"}, transport:{proto:"ICMP"}
+			}
+		},
+		{
+			type:"packet",
+			device:"Toronto",
+			payload:{
+				network:{srcip:"Alice",dstip:"Toronto"}, transport:{proto:"ICMP"}
+			}
+		},
+		{
+			type:"packet",
+			device:"New York",
+			payload:{
+				network:{srcip:"Alice",dstip:"New York"}, transport:{proto:"ICMP"}
+			}
+		},
+		{
+			type:"packet",
+			device:"Mountain View",
+			payload:{
+				network:{srcip:"Alice",dstip:"Mountain View"}, transport:{proto:"ICMP"}
+			}
+		}
+        ]
+}

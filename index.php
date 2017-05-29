@@ -9,7 +9,25 @@ if (LOGGEDIN && !isset($_GET['level'])) {
 	$l = (int)$_GET['level'];
 	$q = $db->query("SELECT * FROM level WHERE id = ".$l);
 	$leveldata = $q->fetchArray();
-	if (!$leveldata) exit('no such level');
+	if (!$leveldata) {
+		include 'header.inc.php';
+		?>
+		<div style="text-align:center; min-height:100%;">
+			<h3>Congratulations!</h3>
+			<p>You beat the last level in the game!</p>
+
+			<p><img src="./includes/fireworks.gif"></p>
+
+			<p>You may want to go <a href="./">look over the levels</a> to make sure you didn't miss any.</p>
+
+			<p>Otherwise, give yourself a pat on the back! You're a real hacker now!</p>
+
+			<div style="height:150px;"></div>
+		</div>
+		<?php
+		include 'footer.inc.php';
+		exit();
+	}
 } else {
 	$leveldata = array('id' => -1, 'filename' => 'login/login', 'name' => 'CS4G Netsim');
 }
@@ -29,6 +47,7 @@ if (LOGGEDIN && !isset($_GET['level'])) {
 
 	<link href="css/jquery-ui.min.css" rel="stylesheet">
 	<style type="text/css">
+		* { font-family:Arial, Helvetica, sans-serif; }
 		body { margin: 0; overflow:hidden; }
 	</style>
 </head>
