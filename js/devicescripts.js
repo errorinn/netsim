@@ -72,20 +72,20 @@ var deviceScripts = {
 	modem: {
 		onPacketReceived: function(device, packet, portNum) {
 			if (!device.hasOwnProperty("rules")) device.rules = {};
+			var newpkt = JSON.parse(JSON.stringify(packet));
 
 			if (packet.network.dstip == device.id) {
 				// TODO: use something other than proto for NAT table
 				if (device.rules.hasOwnProperty( packet.transport.proto )) {
-					packet.network.dstip = device.rules[packet.transport.proto].dstip;
-					sendPacket(device.id, device.rules[packet.transport.proto].portNum, packet);
+					newpkt.network.dstip = device.rules[packet.transport.proto].dstip;
+					sendPacket(device.id, device.rules[packet.transport.proto].portNum, newpkt);
 				}
 			} else {
 				if (packet.hasOwnProperty("transport") && packet.transport.hasOwnProperty("proto")) {
 					device.rules[packet.transport.proto] = {portNum:portNum, dstip: packet.network.srcip};
-					console.log(device.rules);
 				}
-				packet.network.srcip = device.id;
-				sendPacket(device.id, 0, packet);
+				newpkt.network.srcip = device.id;
+				sendPacket(device.id, 0, newpkt);
 			}
 		}
 	},
