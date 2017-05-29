@@ -65,10 +65,18 @@ function createPacketEditor(index, packet) {
 	$('#editor').dialog({
 		title: index < 0 ? "Add packet" : "Update packet",
 		resizable:false,
-		buttons:[{ text: index < 0 ? "Add" : "Update", click:function() { updatePlayerPacket(index < 0 ? playerPackets.length : index); createLaunchers(); $(this).dialog("close");}}]
+		buttons:[
+			{ text: "Remove", click:function() { deletePlayerPacket(index); createLaunchers(); $(this).dialog("close"); }},
+			{ text: index < 0 ? "Add" : "Update", click:function() { updatePlayerPacket(index < 0 ? playerPackets.length : index); createLaunchers(); $(this).dialog("close");}}
+		]
 	});
 	$('select').selectmenu();
 	$('#editor').show();
+}
+
+function deletePlayerPacket(index) {
+	playerPackets.splice(index, 1);
+	savePlayerPackets();
 }
 
 function updatePlayerPacket(index) {
