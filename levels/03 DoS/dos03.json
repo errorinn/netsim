@@ -37,7 +37,7 @@
 			ports:1,
 			x:0.8,
 			y:0.5,
-			bufferWait:170
+			capacity:2
 		},
 		{
 			id:"Router",
@@ -80,28 +80,8 @@
 	timeline:[],
 	triggers:[
 		{
-			type:"packet",
-			device:"Google",
-			payload:{
-				network:{srcip:"Barbara", dstip:"Google"}
-			},
-			times:20
-		},
-		{
-			type:"packet",
-			device:"Google",
-			payload:{
-				network:{srcip:"Carol", dstip:"Google"}
-			},
-			times:20
-		},
-		{
-			type:"packet",
-			device:"Google",
-			payload:{
-				network:{srcip:"Darcy", dstip:"Google"}
-			},
-			times:20
+			type:"flood",
+			device:"Google"
 		}
         ],
 	nextLevel:11

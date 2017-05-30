@@ -37,7 +37,7 @@
 			ports:1,
 			x:0.8,
 			y:0.5,
-			bufferWait:305
+			capacity:3
 		},
 		{
 			id:"Google's Firewall",
@@ -86,30 +86,8 @@
 	],
 	triggers:[
 	    {
-			type:"packet",
-			device:"Google",
-			payload:{
-				network:{srcip:"Zombie 1", dstip:"Google"}
-			}
-	    },
-	    {
-			type:"packet",
-			device:"Google",
-			payload:{
-				network:{srcip:"Zombie 2", dstip:"Google"}
-			}
-	    },
-	    {
-			type:"packet",
-			device:"Google",
-			payload:{
-				network:{srcip:"Zombie 3", dstip:"Google"}
-			}
-	    },
-	    {
-			type:"packet",
-			device:"Google",
-			times:60
+			type:"flood",
+			device:"Google"
 	    }
         ],
 	nextLevel:10

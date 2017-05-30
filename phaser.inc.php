@@ -45,6 +45,8 @@ function preload() {
 	game.load.image('edit', 'includes/ui/tabs.png');
 	game.load.image('launch', 'includes/ui/launch.png');
 	game.load.image('add', 'includes/ui/add.png');
+
+	for (var i = 0; i <= 6; i++) game.load.image('meter-'+i, 'includes/ui/meter-'+i+'.png');
 }
 
 function create() {
@@ -73,8 +75,12 @@ function create() {
 	for (var i = 0; i < level.devices.length; i++) {
 		var devSprite = grpDevices.create(0.7 * game.world.width * level.devices[i].x, game.world.height * level.devices[i].y, level.devices[i].image || 'imac');
 		level.devices[i].sprite = devSprite;
+		if (level.devices[i].hasOwnProperty("capacity")) {
+			level.devices[i].capsprite = grpDevices.create(0.7 * game.world.width * level.devices[i].x + 128,   game.world.height * level.devices[i].y, 'meter-0');
+		}
 		devices[level.devices[i].id] = level.devices[i];
 		devices[level.devices[i].id].ports = [];
+		devices[level.devices[i].id].locked = false;
 		devSprite.inputEnabled = true;
 		devSprite.events.onInputDown.add(onDeviceClick, level.devices[i]);
 	}
@@ -153,6 +159,12 @@ function getRemotePort(src, dst) {
 }
 
 function update() {
+	//todo: separate out the meter-X updates from satisfiesTrigger
+	for (var i = 0; i < level.triggers.length; i++) {
+		if (level.triggers[i].type == "flood") {
+			satisfiesTrigger({dst: level.triggers[i].device}, {type:"flood",device:level.triggers[i].device,noup:true});
+		}
+	}
 }
 
 var levelOver = false;
@@ -188,20 +200,50 @@ function donePacket() {
 
 function satisfiesTrigger(pkt, t) {
 	if (pkt.dst != t.device) return false;
-	if (!t.hasOwnProperty("payload") && !t.hasOwnProperty("times")) return true;
-	if (!pkt.hasOwnProperty("payload")) return false;
-
-	var layers = t.hasOwnProperty("payload") ? Object.keys(t.payload) : [];
-	for (var i = 0; i < layers.length; i++) {
-		if (!pkt.payload.hasOwnProperty(layers[i])) return false;
-
-		var fields = Object.keys(t.payload[ layers[i] ]);
-		for (var j = 0; j < fields.length; j++) {
-			if (!pkt.payload[ layers[i] ].hasOwnProperty(fields[j])) return false;
-			if (pkt.payload[ layers[i] ][ fields[j] ].trim().toLowerCase() != t.payload[ layers[i] ][ fields[j] ].trim().toLowerCase()) return false;
+	
+	if (t.type == "packet") {
+		if (!t.hasOwnProperty("payload") && !t.hasOwnProperty("times")) return true;
+		if (!pkt.hasOwnProperty("payload")) return false;
+	
+		var layers = t.hasOwnProperty("payload") ? Object.keys(t.payload) : [];
+		for (var i = 0; i < layers.length; i++) {
+			if (!pkt.payload.hasOwnProperty(layers[i])) return false;
+	
+			var fields = Object.keys(t.payload[ layers[i] ]);
+			for (var j = 0; j < fields.length; j++) {
+				if (!pkt.payload[ layers[i] ].hasOwnProperty(fields[j])) return false;
+				if (pkt.payload[ layers[i] ][ fields[j] ].trim().toLowerCase() != t.payload[ layers[i] ][ fields[j] ].trim().toLowerCase()) return false;
+			}
 		}
-	}
 
-	return true;
+		return true;
+	} else if (t.type == "flood") {
+		if (!devices[t.device].hasOwnProperty("floodCounter")) {
+			devices[t.device].floodCounter = 0;
+			devices[t.device].floodLast = 0;
+		}
+
+		var delta = game.time.events.ms - devices[t.device].floodLast;
+		if (t.noup && devices[t.device].floodCounter > 0) {
+			if (delta > 200) {
+				devices[t.device].floodCounter--;
+				devices[t.device].floodLast = game.time.events.ms;
+			}
+		} else if (delta < 120 / devices[t.device].capacity) {
+			devices[t.device].floodCounter++;
+			if (devices[t.device].floodCounter > 30) devices[t.device].floodCounter = 30;
+		} else {
+			devices[t.device].floodCounter -= Math.floor(delta / (120 / devices[t.device].capacity));
+			if (devices[t.device].floodCounter < 0) devices[t.device].floodCounter = 0;
+		}
+
+		if (!t.noup) devices[t.device].floodLast = game.time.events.ms;
+		devices[t.device].capsprite.loadTexture('meter-'+Math.floor( devices[t.device].floodCounter / 5 ));
+
+		return devices[t.device].floodCounter == 30;
+	} else {
+		console.log("unknown trigger type: "+t.type);
+		return false;
+	}
 }
 

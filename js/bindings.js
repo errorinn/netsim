@@ -77,13 +77,22 @@ function btnEdit() {
 
 function btnLaunch() {
 	var pkt = playerPackets[this.launcherIndex];
+	if (devices[pkt.from].locked) return;
+	devices[pkt.from].locked = true;
 
 	if (pkt.hasOwnProperty("repeat") && pkt.repeat > 1) {
 		for (var i = 0; i < pkt.repeat; i++) {
 			game.time.events.add( 100 * i, playPacket, pkt );
 		}
+
+		game.time.events.add(100 * (parseInt(pkt.repeat) + 1), launcherUnlock, pkt);
 	} else {
 		doPacketAnimation(pkt.from, getDefaultRecipient(pkt.from), pkt.payload);
+		game.time.events.add(100, launcherUnlock, pkt);
 	}
+}
+
+function launcherUnlock(index) {
+	devices[this.from].locked = false;
 }
 

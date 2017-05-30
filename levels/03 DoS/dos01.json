@@ -14,7 +14,7 @@
 			ports:1,
 			x:0.75,
 			y:0.5,
-			bufferWait:260
+			capacity:1
 		}
 	],
 	links:[
@@ -26,9 +26,8 @@
 	timeline:[],
 	triggers:[
 		{
-			type:"packet",
+			type:"flood",
 			device:"Google",
-			times:50
 		}
 	],
 	nextLevel:9
