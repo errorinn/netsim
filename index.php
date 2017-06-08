@@ -99,7 +99,7 @@ if (LOGGEDIN && !isset($_GET['level'])) {
 
 <div id="footer" style="position:absolute;bottom:0.5em;right:0.5em;font-size:0.5em">
 	created by 
-	<a href="https://erinn.io/">erinn atwater</a> based on a project with 
+	<a href="https://erinn.io/">erinn atwater</a> and
 	<a href="https://cs.uwaterloo.ca/~cbocovic">cecylia bocovich</a> | 
 	device images designed by 
 	<a href="http://www.flaticon.com/authors/madebyoliver">madebyoliver</a> from Flaticon

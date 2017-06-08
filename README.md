@@ -13,6 +13,6 @@ You don't need to download and run the code yourself; you can use our hosted ver
 Erinn is on [Patreon](https://www.patreon.com/errorinn)
 
 # acknowledgements
-- created by erinn atwater
-- based on a project with cecylia bocovich
-- device images designed by [madebyoliver](http://www.flaticon.com/authors/madebyoliver) from Flaticon 
+- created by erinn atwater and cecylia bocovich
+- device images designed by [madebyoliver](http://www.flaticon.com/authors/madebyoliver) from Flaticon
+
